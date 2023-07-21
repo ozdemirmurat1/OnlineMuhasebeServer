@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using OnlineMuhasebeServer.Domain.AppEntities;
 using OnlineMuhasebeServer.Domain.AppEntities.Identity;
 using System;
 using System.Collections.Generic;
@@ -14,5 +15,9 @@ namespace OnlineMuhasebeServer.Persistence.Context
         public AppDbContext(DbContextOptions options) : base(options)
         {
         }
+
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<UserAndCompanyRelationship> UserAndCompanyRelationships { get; set; }
+        
     }
 }
