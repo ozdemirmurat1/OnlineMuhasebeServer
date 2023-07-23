@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using OnlineMuhasebeServer.Domain.Abstractions;
 using OnlineMuhasebeServer.Domain.AppEntities;
 using OnlineMuhasebeServer.Domain.AppEntities.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -42,6 +44,20 @@ namespace OnlineMuhasebeServer.Persistence.Context
             }
 
             return base.SaveChangesAsync(cancellationToken);    
+        }
+
+        public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
+        {
+            public AppDbContext CreateDbContext(string[] args)
+            {
+                var optionsBuilder = new DbContextOptionsBuilder();
+
+                var connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=MuhasebeMasterDb; Trusted_Connection=True;";
+
+                optionsBuilder.UseSqlServer(connectionString);
+
+                return new AppDbContext(optionsBuilder.Options);
+            }
         }
 
     }
