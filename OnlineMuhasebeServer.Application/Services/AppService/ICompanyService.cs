@@ -1,4 +1,5 @@
 ﻿using OnlineMuhasebeServer.Application.Features.AppFeatures.CompanyFeatures.Commands.CreateCompany;
+using OnlineMuhasebeServer.Domain.AppEntities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,9 @@ namespace OnlineMuhasebeServer.Application.Services.AppService
     public interface ICompanyService
     {
         Task CreateCompany(CreateCompanyRequest request);
+
+        Task MigrateCompanyDatabases();
+
+        Task<Company?> GetCompanyByName(string name);
     }
 }

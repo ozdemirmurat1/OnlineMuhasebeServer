@@ -16,4 +16,8 @@
     <Folder Include="Services\CompanyService\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OnlineMuhasebeServer.Domain\OnlineMuhasebeServer.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

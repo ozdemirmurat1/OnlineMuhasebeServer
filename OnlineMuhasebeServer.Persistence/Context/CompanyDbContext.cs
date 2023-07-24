@@ -14,7 +14,7 @@ namespace OnlineMuhasebeServer.Persistence.Context
         private string ConnectionString = "";
         
 
-        public CompanyDbContext(string companyId, Company company=null)
+        public CompanyDbContext(Company company=null)
         {
             if (company != null)
             {
@@ -40,7 +40,7 @@ namespace OnlineMuhasebeServer.Persistence.Context
         {
             public CompanyDbContext CreateDbContext(string[] args)
             {
-                return new CompanyDbContext("");
+                return new CompanyDbContext();
             }
         }
 

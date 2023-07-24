@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using OnlineMuhasebeServer.Application.Services.AppService;
+using OnlineMuhasebeServer.Domain.AppEntities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,10 @@ namespace OnlineMuhasebeServer.Application.Features.AppFeatures.CompanyFeatures.
 
         public async Task<CreateCompanyResponse> Handle(CreateCompanyRequest request, CancellationToken cancellationToken)
         {
+            Company company = await _companyService.GetCompanyByName(request.Name);
+
+            if (company != null) throw new Exception("Bu şirket adı daha önce kullanılmış");
+
             await _companyService.CreateCompany(request);
             return new();
         }
