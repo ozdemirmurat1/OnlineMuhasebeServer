@@ -6,9 +6,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using OnlineMuhasebeServer.Application;
 using OnlineMuhasebeServer.Application.Services.AppService;
+using OnlineMuhasebeServer.Domain;
 using OnlineMuhasebeServer.Domain.AppEntities.Identity;
+using OnlineMuhasebeServer.Domain.Repositories.UCAFRepositories;
 using OnlineMuhasebeServer.Persistence;
 using OnlineMuhasebeServer.Persistence.Context;
+using OnlineMuhasebeServer.Persistence.Repositories.UCAFRepositories;
 using OnlineMuhasebeServer.Persistence.Services.AppServices;
 using OnlineMuhasebeServer.Presentation;
 using System.Reflection;
@@ -24,6 +27,9 @@ builder.Services.AddIdentity<AppUser,AppRole>()
     .AddEntityFrameworkStores<AppDbContext>();
 
 builder.Services.AddScoped<ICompanyService, CompanyService>();
+builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
+builder.Services.AddScoped<IUCAFCommandRepository, UCAFCommandRepository>();
+builder.Services.AddScoped<IUCAFQueryRepository, UCAFQueryRepository>();
 
 //builder.Services.AddMediatR(typeof(OnlineMuhasebeServer.Application.AssemblyReference).Assembly);
 builder.Services.AddMediatR(cfg => { cfg.RegisterServicesFromAssemblies(typeof(OnlineMuhasebeServer.Application.AssemblyReference).Assembly); });
