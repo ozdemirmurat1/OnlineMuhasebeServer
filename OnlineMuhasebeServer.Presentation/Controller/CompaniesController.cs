@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace OnlineMuhasebeServer.Presentation.Controller
 {
-    public class CompaniesController : ApiController
+    public sealed class CompaniesController : ApiController
     {
         public CompaniesController(IMediator mediator) : base(mediator)
         {

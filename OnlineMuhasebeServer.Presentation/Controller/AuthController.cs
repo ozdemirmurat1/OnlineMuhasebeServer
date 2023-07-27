@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace OnlineMuhasebeServer.Presentation.Controller
 {
-    public class AuthController : ApiController
+    public sealed class AuthController : ApiController
     {
         public AuthController(IMediator mediator) : base(mediator)
         {
