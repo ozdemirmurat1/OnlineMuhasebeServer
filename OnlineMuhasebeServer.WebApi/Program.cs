@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
@@ -43,5 +44,21 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+using (var scoped=app.Services.CreateScope())
+{
+    var userManager=scoped.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
+    if (!userManager.Users.Any())
+    {
+        userManager.CreateAsync(new AppUser
+        {
+            UserName="tsaydam",
+            Email="tanersaydam@gmail.com",
+            Id=Guid.NewGuid().ToString(),
+            NameLastName="Taner Saydam"
+
+        },"Password12*").Wait();
+    }
+}
 
 app.Run();

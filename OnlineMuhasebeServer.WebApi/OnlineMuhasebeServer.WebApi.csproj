@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OnlineMuhasebeServer.Application\OnlineMuhasebeServer.Application.csproj" />
+    <ProjectReference Include="..\OnlineMuhasebeServer.Infrastructure\OnlineMuhasebeServer.Infrastructure.csproj" />
     <ProjectReference Include="..\OnlineMuhasebeServer.Persistence\OnlineMuhasebeServer.Persistence.csproj" />
     <ProjectReference Include="..\OnlineMuhasebeServer.Presentation\OnlineMuhasebeServer.Presentation.csproj" />
   </ItemGroup>
