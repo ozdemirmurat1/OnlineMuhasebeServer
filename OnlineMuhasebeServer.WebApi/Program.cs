@@ -16,58 +16,16 @@ using OnlineMuhasebeServer.Persistence.Repositories.UCAFRepositories;
 using OnlineMuhasebeServer.Persistence.Services.AppServices;
 using OnlineMuhasebeServer.Persistence.Services.CompanyServices;
 using OnlineMuhasebeServer.Presentation;
+using OnlineMuhasebeServer.WebApi.Configurations;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddDbContext<AppDbContext>(options => 
-                  options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
-
-builder.Services.AddIdentity<AppUser,AppRole>()
-    .AddEntityFrameworkStores<AppDbContext>();
-
-builder.Services.AddScoped<ICompanyService, CompanyService>();
-builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
-builder.Services.AddScoped<IUCAFCommandRepository, UCAFCommandRepository>();
-builder.Services.AddScoped<IUCAFQueryRepository, UCAFQueryRepository>();
-builder.Services.AddScoped<IContextService, ContextService>();
-builder.Services.AddScoped<IUCAFService, UCAFService>();
-
-//builder.Services.AddMediatR(typeof(OnlineMuhasebeServer.Application.AssemblyReference).Assembly);
-builder.Services.AddMediatR(cfg => { cfg.RegisterServicesFromAssemblies(typeof(OnlineMuhasebeServer.Application.AssemblyReference).Assembly); });
-
-builder.Services.AddAutoMapper(typeof(OnlineMuhasebeServer.Persistence.AssemblyReference).Assembly);
-
-builder.Services.AddControllers()
-    .AddApplicationPart(typeof(OnlineMuhasebeServer.Persistence.AssemblyReference).Assembly);
-
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(setup =>
-{
-    var jwtSecurityScheme = new OpenApiSecurityScheme
-    {
-        BearerFormat="JWT",
-        Name="JWT Authentication",
-        In=ParameterLocation.Header,
-        Type=SecuritySchemeType.Http,
-        Scheme=JwtBearerDefaults.AuthenticationScheme,
-        Description="Put **_ONLY_** your JWT Bearer token on textbox below!",
-        Reference=new OpenApiReference
-        {
-            Id=JwtBearerDefaults.AuthenticationScheme,
-            Type=ReferenceType.SecurityScheme
-        }
-    };
-
-    setup.AddSecurityDefinition(jwtSecurityScheme.Reference.Id, jwtSecurityScheme);
-    setup.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
-        {jwtSecurityScheme,Array.Empty<string>() }
-    });
-});
+builder.Services
+    .InstallService(
+    builder.Configuration, typeof(IServiceInstaller).Assembly);
 
 var app = builder.Build();
 
@@ -79,6 +37,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
