@@ -18,6 +18,7 @@ using OnlineMuhasebeServer.Persistence.Services.AppServices;
 using OnlineMuhasebeServer.Persistence.Services.CompanyServices;
 using OnlineMuhasebeServer.Presentation;
 using OnlineMuhasebeServer.WebApi.Configurations;
+using OnlineMuhasebeServer.WebApi.Middleware;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -36,6 +37,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseExceptionMiddleware();
 
 app.UseHttpsRedirection();
 
