@@ -25,6 +25,8 @@ namespace OnlineMuhasebeServer.WebApi.Configurations
             services.AddScoped<ICompanyService, CompanyService>();
             services.AddScoped<IUCAFService, UCAFService>();
 
+            services.AddScoped<IRoleService, RoleService>();
+
             #endregion
 
             #region Repositories
