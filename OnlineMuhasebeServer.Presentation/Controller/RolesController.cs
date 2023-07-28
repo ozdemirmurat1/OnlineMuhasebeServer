@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using OnlineMuhasebeServer.Application.Features.AppFeatures.RoleFeatures.Commands.CreateRole;
+using OnlineMuhasebeServer.Application.Features.AppFeatures.RoleFeatures.Commands.UpdateRole;
 using OnlineMuhasebeServer.Application.Features.AppFeatures.RoleFeatures.Queries.GetAllRoles;
 using OnlineMuhasebeServer.Presentation.Abstraction;
 using System;
@@ -29,6 +30,13 @@ namespace OnlineMuhasebeServer.Presentation.Controller
         {
             GetAllRolesRequest request = new();
             GetAllRolesResponse response=await _mediator.Send(request);
+            return Ok(response);
+        }
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> UpdateRole(UpdateRoleRequest request)
+        {
+            UpdateRoleResponse response=await _mediator.Send(request);
             return Ok(response);
         }
     }
