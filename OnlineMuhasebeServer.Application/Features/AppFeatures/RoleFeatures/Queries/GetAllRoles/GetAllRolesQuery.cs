@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OnlineMuhasebeServer.Application.Features.AppFeatures.RoleFeatures.Queries.GetAllRoles
 {
-    public sealed class GetAllRolesRequest : IRequest<GetAllRolesResponse>
+    public sealed class GetAllRolesQuery : IRequest<GetAllRolesQueryResponse>
     {
     }
 }

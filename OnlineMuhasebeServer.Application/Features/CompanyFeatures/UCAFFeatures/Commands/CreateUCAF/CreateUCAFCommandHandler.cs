@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace OnlineMuhasebeServer.Application.Features.CompanyFeatures.UCAFFeatures.Commands.CreateUCAF
 {
-    public class CreateUCAFHandler : IRequestHandler<CreateUCAFRequest, CreateUCAFResponse>
+    public class CreateUCAFCommandHandler : IRequestHandler<CreateUCAFRequest, CreateUCAFResponse>
     {
         private readonly IUCAFService _ucafService;
 
-        public CreateUCAFHandler(IUCAFService ucafService)
+        public CreateUCAFCommandHandler(IUCAFService ucafService)
         {
             _ucafService = ucafService;
         }

@@ -29,15 +29,15 @@ namespace OnlineMuhasebeServer.Presentation.Controller
         [HttpGet("[action]")]
         public async Task<IActionResult> GetAllRoles()
         {
-            GetAllRolesRequest request = new();
-            GetAllRolesResponse response=await _mediator.Send(request);
+            GetAllRolesQuery request = new();
+            GetAllRolesQueryResponse response=await _mediator.Send(request);
             return Ok(response);
         }
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> UpdateRole(UpdateRoleRequest request)
+        public async Task<IActionResult> UpdateRole(UpdateRoleCommand request)
         {
-            UpdateRoleResponse response=await _mediator.Send(request);
+            UpdateRoleCommandResponse response=await _mediator.Send(request);
             return Ok(response);
         }
 

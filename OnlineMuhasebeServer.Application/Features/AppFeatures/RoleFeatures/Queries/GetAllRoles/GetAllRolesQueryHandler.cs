@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace OnlineMuhasebeServer.Application.Features.AppFeatures.RoleFeatures.Queries.GetAllRoles
 {
-    public sealed class GetAllRolesHandler : IRequestHandler<GetAllRolesRequest, GetAllRolesResponse>
+    public sealed class GetAllRolesQueryHandler : IRequestHandler<GetAllRolesRequest, GetAllRolesResponse>
     {
         private readonly IRoleService _roleService;
 
-        public GetAllRolesHandler(IRoleService roleService)
+        public GetAllRolesQueryHandler(IRoleService roleService)
         {
             _roleService = roleService;
         }

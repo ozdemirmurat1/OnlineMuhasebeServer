@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OnlineMuhasebeServer.Application.Features.CompanyFeatures.UCAFFeatures.Commands.CreateUCAF
 {
-    public sealed class CreateUCAFRequest:IRequest<CreateUCAFResponse>
+    public sealed class CreateUCAFCommand:IRequest<CreateUCAFResponse>
     {
         public string Code { get; set; }
         public string Name { get; set; }
