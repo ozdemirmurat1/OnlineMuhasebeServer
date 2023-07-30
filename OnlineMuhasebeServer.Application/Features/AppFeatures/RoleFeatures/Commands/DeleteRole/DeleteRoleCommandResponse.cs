@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 
 namespace OnlineMuhasebeServer.Application.Features.AppFeatures.RoleFeatures.Commands.DeleteRole
 {
-    public sealed class DeleteRoleResponse
-    {
-        public string Message { get; set; } = "Rol başarıyla silindi!";
-    }
+    public sealed record DeleteRoleCommandResponse(
+        string Message="Rol başarıyla silindi");
 }

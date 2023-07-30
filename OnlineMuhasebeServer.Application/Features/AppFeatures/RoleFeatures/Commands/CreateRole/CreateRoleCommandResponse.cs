@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 
 namespace OnlineMuhasebeServer.Application.Features.AppFeatures.RoleFeatures.Commands.CreateRole
 {
-    public sealed class CreateRoleResponse
-    {
-        public string Message { get; set; } = "Rol kaydı başarıyla tamamlandı!";
-    }
+    public sealed record CreateRoleCommandResponse(
+        string Message="Role kaydı başarıyla tamamlandı");
 }
