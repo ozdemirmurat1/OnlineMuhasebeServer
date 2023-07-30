@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using OnlineMuhasebeServer.Application.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +8,11 @@ using System.Threading.Tasks;
 
 namespace OnlineMuhasebeServer.Application.Features.CompanyFeatures.UCAFFeatures.Commands.CreateUCAF
 {
-    public sealed class CreateUCAFCommand:IRequest<CreateUCAFResponse>
-    {
-        public string Code { get; set; }
-        public string Name { get; set; }
-        public char Type { get; set; } // Ana Grup,Grup,Muavin
-
-        public string CompanyId { get; set; }
-    }
+    public sealed record CreateUCAFCommand(
+        string Code,
+        string Name,
+        string Type,
+        string CompanyId
+        
+        ):ICommand<CreateUCAFCommandResponse>;
 }

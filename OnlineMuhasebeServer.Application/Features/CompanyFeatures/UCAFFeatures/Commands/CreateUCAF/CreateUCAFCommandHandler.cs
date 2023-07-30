@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using OnlineMuhasebeServer.Application.Messaging;
 using OnlineMuhasebeServer.Application.Services.CompanyService;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace OnlineMuhasebeServer.Application.Features.CompanyFeatures.UCAFFeatures.Commands.CreateUCAF
 {
-    public class CreateUCAFCommandHandler : IRequestHandler<CreateUCAFRequest, CreateUCAFResponse>
+    public class CreateUCAFCommandHandler : ICommandHandler<CreateUCAFCommand, CreateUCAFCommandResponse>
     {
         private readonly IUCAFService _ucafService;
 
@@ -17,7 +18,7 @@ namespace OnlineMuhasebeServer.Application.Features.CompanyFeatures.UCAFFeatures
             _ucafService = ucafService;
         }
 
-        public async Task<CreateUCAFResponse> Handle(CreateUCAFRequest request, CancellationToken cancellationToken)
+        public async Task<CreateUCAFCommandResponse> Handle(CreateUCAFCommand request, CancellationToken cancellationToken)
         {
             await _ucafService.CreateUcafAsync(request);
             return new();

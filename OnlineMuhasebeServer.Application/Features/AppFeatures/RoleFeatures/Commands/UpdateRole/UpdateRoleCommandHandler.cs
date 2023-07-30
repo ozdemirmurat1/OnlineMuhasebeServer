@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using OnlineMuhasebeServer.Application.Messaging;
 using OnlineMuhasebeServer.Application.Services.AppService;
 using OnlineMuhasebeServer.Domain.AppEntities.Identity;
 using System;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace OnlineMuhasebeServer.Application.Features.AppFeatures.RoleFeatures.Commands.UpdateRole
 {
-    public sealed class UpdateRoleCommandHandler : IRequestHandler<UpdateRoleCommand, UpdateRoleCommandResponse>
+    public sealed class UpdateRoleCommandHandler : ICommandHandler<UpdateRoleCommand, UpdateRoleCommandResponse>
     {
         private readonly IRoleService _roleService;
 

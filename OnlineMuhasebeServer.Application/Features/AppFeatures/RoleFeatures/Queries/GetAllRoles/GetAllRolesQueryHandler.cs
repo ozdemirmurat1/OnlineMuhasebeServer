@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using OnlineMuhasebeServer.Application.Messaging;
 using OnlineMuhasebeServer.Application.Services.AppService;
 using OnlineMuhasebeServer.Domain.AppEntities.Identity;
 using System;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace OnlineMuhasebeServer.Application.Features.AppFeatures.RoleFeatures.Queries.GetAllRoles
 {
-    public sealed class GetAllRolesQueryHandler : IRequestHandler<GetAllRolesRequest, GetAllRolesResponse>
+    public sealed class GetAllRolesQueryHandler : IQueryHandler<GetAllRolesQuery, GetAllRolesQueryResponse>
     {
         private readonly IRoleService _roleService;
 
@@ -20,10 +21,10 @@ namespace OnlineMuhasebeServer.Application.Features.AppFeatures.RoleFeatures.Que
             _roleService = roleService;
         }
 
-        public async Task<GetAllRolesResponse> Handle(GetAllRolesRequest request, CancellationToken cancellationToken)
+        public async Task<GetAllRolesQueryResponse> Handle(GetAllRolesQuery request, CancellationToken cancellationToken)
         {
             IList<AppRole> roles = await _roleService.GetAllRolesAsync();
-            return new GetAllRolesResponse { Roles = roles };
+            return new GetAllRolesQueryResponse { Roles = roles };
         }
     }
 }
