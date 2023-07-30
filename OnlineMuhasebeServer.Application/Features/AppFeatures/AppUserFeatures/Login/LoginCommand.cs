@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using OnlineMuhasebeServer.Application.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,7 @@ using System.Threading.Tasks;
 
 namespace OnlineMuhasebeServer.Application.Features.AppFeatures.AppUserFeatures.Login
 {
-    public sealed class LoginRequest:IRequest<LoginResponse>
-    {
-        public string EmailOrUserName { get; set; }
-        public string Password { get; set; }
-    }
+    public sealed record LoginCommand(
+        string EmailOrUserName,
+        string Password): ICommand<LoginCommandResponse>;
 }

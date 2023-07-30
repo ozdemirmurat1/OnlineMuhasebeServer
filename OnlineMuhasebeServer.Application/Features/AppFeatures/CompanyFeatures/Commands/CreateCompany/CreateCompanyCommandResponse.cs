@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace OnlineMuhasebeServer.Application.Features.AppFeatures.CompanyFeatures.Commands.CreateCompany
 {
-    public sealed class CreateCompanyResponse
-    {
-        public string Message { get; set; } = "Şirket kaydı başarıyla tamamlandı";
-    }
+    public sealed record CreateCompanyCommandResponse(
+
+        string Message  = "Şirket kaydı başarıyla tamamlandı!");
 }
