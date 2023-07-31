@@ -8,5 +8,5 @@ using System.Threading.Tasks;
 
 namespace OnlineMuhasebeServer.Application.Features.AppFeatures.RoleFeatures.Queries.GetAllRoles
 {
-    public sealed record GetAllRolesQuery : IQuery<GetAllRolesQueryResponse>
+    public sealed record GetAllRolesQuery : IQuery<GetAllRolesQueryResponse>;
 }
