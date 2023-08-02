@@ -19,10 +19,10 @@ namespace OnlineMuhasebeServer.Persistence.Context
         {
             if (company != null)
             {
-                if (company.UserId == "")
+                if (company.ServerUserId == "")
                     ConnectionString = $"Server={company.ServerName};Database={company.DatabaseName}; Trusted_Connection=True;";
                 else
-                    ConnectionString = $"Server={company.ServerName};Database={company.DatabaseName};User Id={company.UserId} ;Password={company.Password};";
+                    ConnectionString = $"Server={company.ServerName};Database={company.DatabaseName};User Id={company.ServerUserId} ;Password={company.ServerPassword};";
             }
 
            
