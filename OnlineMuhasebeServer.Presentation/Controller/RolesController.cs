@@ -19,6 +19,7 @@ namespace OnlineMuhasebeServer.Presentation.Controller
         {
         }
 
+        // Identity kütüphanesi kendiliğinden CancellationToken ile çalışır. Bu yüzden aşağıdaki metoda cancellation token eklemedik
         [HttpPost("[action]")]
         public async Task<IActionResult> CreateRole(CreateRoleCommand request)
         {

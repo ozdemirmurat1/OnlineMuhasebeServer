@@ -10,7 +10,7 @@ namespace OnlineMuhasebeServer.Application.Services.AppService
 {
     public interface ICompanyService
     {
-        Task CreateCompany(CreateCompanyCommand request);
+        Task CreateCompany(CreateCompanyCommand request, CancellationToken cancellationToken);
 
         Task MigrateCompanyDatabases();
 

@@ -11,6 +11,6 @@ namespace OnlineMuhasebeServer.Domain
     {
         void SetDbContextInstance(DbContext context);
 
-        Task<int> SaveChangesAsync();
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }
