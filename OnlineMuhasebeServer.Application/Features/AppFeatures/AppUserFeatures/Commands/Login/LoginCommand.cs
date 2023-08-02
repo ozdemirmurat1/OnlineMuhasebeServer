@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineMuhasebeServer.Application.Features.AppFeatures.AppUserFeatures.Login
+namespace OnlineMuhasebeServer.Application.Features.AppFeatures.AppUserFeatures.Commands.Login
 {
     public sealed record LoginCommand(
         string EmailOrUserName,
-        string Password): ICommand<LoginCommandResponse>;
+        string Password) : ICommand<LoginCommandResponse>;
 }

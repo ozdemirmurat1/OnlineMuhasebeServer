@@ -10,9 +10,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineMuhasebeServer.Application.Features.AppFeatures.AppUserFeatures.Login
+namespace OnlineMuhasebeServer.Application.Features.AppFeatures.AppUserFeatures.Commands.Login
 {
-    public class LoginCommandHandler : ICommandHandler<LoginCommand,LoginCommandResponse>
+    public class LoginCommandHandler : ICommandHandler<LoginCommand, LoginCommandResponse>
     {
         private readonly IJwtProvider _jwtProvider;
         private readonly UserManager<AppUser> _userManager;
@@ -40,7 +40,7 @@ namespace OnlineMuhasebeServer.Application.Features.AppFeatures.AppUserFeatures.
                 user.Email,
                 user.NameLastName,
                 user.Id,
-                await _jwtProvider.CreateTokenAsync(user,roles));
+                await _jwtProvider.CreateTokenAsync(user, roles));
 
             return response;
         }
