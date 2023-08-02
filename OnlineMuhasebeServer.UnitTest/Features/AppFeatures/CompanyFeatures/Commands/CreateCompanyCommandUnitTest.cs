@@ -7,7 +7,7 @@ using Shouldly;
 
 namespace OnlineMuhasebeServer.UnitTest.Features.AppFeatures.CompanyFeatures.Commands
 {
-    public class CreateCompanyCommandUnitTest
+    public sealed class CreateCompanyCommandUnitTest
     {
         private readonly Mock<ICompanyService> _companyService;
 
