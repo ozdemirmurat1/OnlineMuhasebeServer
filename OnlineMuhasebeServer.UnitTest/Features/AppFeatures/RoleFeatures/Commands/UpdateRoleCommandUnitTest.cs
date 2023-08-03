@@ -39,6 +39,10 @@ namespace OnlineMuhasebeServer.UnitTest.Features.AppFeatures.RoleFeatures.Comman
                 Code: "UCAF.Create",
                 Name: "Hesap Planı Kayıt Ekleme");
 
+            _ = _roleServiceMock.Setup(
+               x => x.GetById(It.IsAny<string>()))
+               .ReturnsAsync(new AppRole());
+
             var handler = new UpdateRoleCommandHandler(_roleServiceMock.Object);
 
             UpdateRoleCommandResponse response = await handler.Handle(command, default);
