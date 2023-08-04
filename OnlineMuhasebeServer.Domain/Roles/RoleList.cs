@@ -11,6 +11,8 @@ namespace OnlineMuhasebeServer.Domain.Roles
     {
         public static List<AppRole> GetStaticRoles()
         {
+
+            #region UCAF
             List<AppRole> appRoles = new List<AppRole>
             {
                 new AppRole(
@@ -21,9 +23,21 @@ namespace OnlineMuhasebeServer.Domain.Roles
                 new AppRole(
                     title: UCAF,
                     code: UCAFUpdateCode,
-                    name: UCAFUpdateName
+                    name: UCAFUpdateName),
+
+                new AppRole(
+                    title: UCAF,
+                    code: UCAFRemoveCode,
+                    name: UCAFRemoveName
+                    ),
+
+                new AppRole(
+                    title: UCAF,
+                    code: UCAFReadCode,
+                    name: UCAFReadName
                     )
             };
+            #endregion
 
             return appRoles;
         }

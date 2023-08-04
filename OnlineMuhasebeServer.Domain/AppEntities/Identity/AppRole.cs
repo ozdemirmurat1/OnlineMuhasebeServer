@@ -15,6 +15,7 @@ namespace OnlineMuhasebeServer.Domain.AppEntities.Identity
         }
         public AppRole(string title,string code,string name)
         {
+            Id=Guid.NewGuid().ToString();
             Code = code;
             Name = name;
             Title = title;

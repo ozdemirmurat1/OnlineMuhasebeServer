@@ -13,6 +13,8 @@ namespace OnlineMuhasebeServer.Application.Services.AppService
     {
         Task AddAsync(CreateRoleCommand request);
 
+        Task AddRangeAsync(IEnumerable<AppRole> roles);
+
         Task UpdateAsync(AppRole appRole);
 
         Task DeleteAsync(AppRole appRole);
