@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OnlineMuhasebeServer.Domain.Abstractions;
-using OnlineMuhasebeServer.Domain.Repositories;
+using OnlineMuhasebeServer.Domain.Repositories.GenericRepositories.AppDbContext;
 using OnlineMuhasebeServer.Persistence.Context;
 using System;
 using System.Collections.Generic;
@@ -8,30 +8,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineMuhasebeServer.Persistence.Repositories
+namespace OnlineMuhasebeServer.Persistence.Repositories.GenericRepositories.AppDbContext
 {
-    public class CommandRepository<T> : ICommandRepository<T> where T : Entity
+    public class AppCommandRepository<T> : IAppCommandRepository<T>
+        where T : Entity
     {
-        private static readonly Func<CompanyDbContext,string,Task<T>> GetByIdCompiled =EF.CompileAsyncQuery((CompanyDbContext context,string id)=> context.Set<T>().FirstOrDefault(p=>p.Id == id));
 
-        private CompanyDbContext _context;
+        private readonly Context.AppDbContext _context;
+
+        public AppCommandRepository(Context.AppDbContext context)
+        {
+            _context = context;
+            Entity=_context.Set<T>();
+        }
+
+        private static readonly Func<Context.AppDbContext, string, Task<T>> GetByIdCompiled = EF.CompileAsyncQuery((Context.AppDbContext context, string id) => context.Set<T>().FirstOrDefault(p => p.Id == id));
 
         public DbSet<T> Entity { get; set; }
 
-        public void SetDbContextInstance(DbContext context)
-        {
-            _context=(CompanyDbContext)context;
-            Entity=_context.Set<T>();
-        }
         public async Task AddAsync(T entity, CancellationToken cancellationToken)
         {
-            await Entity.AddAsync(entity,cancellationToken);
+            await Entity.AddAsync(entity, cancellationToken);
         }
 
-       
-        public async Task AddRangeAsync(IEnumerable<T> entities,CancellationToken cancellationToken)
+
+        public async Task AddRangeAsync(IEnumerable<T> entities, CancellationToken cancellationToken)
         {
-            await Entity.AddRangeAsync(entities,cancellationToken);
+            await Entity.AddRangeAsync(entities, cancellationToken);
         }
 
         public void Remove(T entity)
@@ -41,7 +44,7 @@ namespace OnlineMuhasebeServer.Persistence.Repositories
 
         public async Task RemoveById(string id)
         {
-            T entity=await GetByIdCompiled(_context,id);
+            T entity = await GetByIdCompiled(_context, id);
             Remove(entity);
         }
 
