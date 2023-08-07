@@ -22,9 +22,9 @@ namespace OnlineMuhasebeServer.Persistence.Repositories.GenericRepositories.AppD
         ? context.Set<T>().FirstOrDefault()
         : context.Set<T>().AsNoTracking().FirstOrDefault());
 
-        private static readonly Func<Context.AppDbContext, Expression<Func<T, bool>>, bool, Task<T>> GetFirstByExpressionCompiled = EF.CompileAsyncQuery((Context.AppDbContext context, Expression<Func<T, bool>> expression, bool istracking) => istracking == true
-           ? context.Set<T>().FirstOrDefault(expression)
-           : context.Set<T>().AsNoTracking().FirstOrDefault(expression));
+        //private static readonly Func<Context.AppDbContext, Expression<Func<T, bool>>, bool, Task<T>> GetFirstByExpressionCompiled = EF.CompileAsyncQuery((Context.AppDbContext context, Expression<Func<T, bool>> expression, bool istracking) => istracking == true
+        //   ? context.Set<T>().FirstOrDefault(expression)
+        //   : context.Set<T>().AsNoTracking().FirstOrDefault(expression));
 
         private Context.AppDbContext _context;
 
@@ -58,7 +58,14 @@ namespace OnlineMuhasebeServer.Persistence.Repositories.GenericRepositories.AppD
 
         public async Task<T> GetFirstByExpression(Expression<Func<T, bool>> expression, bool isTracking = true)
         {
-            return await GetFirstByExpressionCompiled(_context, expression, isTracking);
+            T entity = null;
+
+            if(!isTracking)
+                entity=await Entity.AsNoTracking().Where(expression).FirstOrDefaultAsync();
+            else
+                entity=await Entity.Where(expression).FirstOrDefaultAsync();
+
+            return entity;
         }
 
         public IQueryable<T> GetWhere(Expression<Func<T, bool>> expression, bool isTracking = true)
