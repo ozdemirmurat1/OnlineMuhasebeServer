@@ -17,7 +17,7 @@ namespace OnlineMuhasebeServer.Domain.Repositories.GenericRepositories
 
         Task<T> GetById(string id, bool isTracking = true);
 
-        Task<T> GetFirstByExpression(Expression<Func<T, bool>> expression, bool isTracking = true);
+        Task<T> GetFirstByExpression(Expression<Func<T, bool>> expression,CancellationToken cancellationToken, bool isTracking = true);
 
         Task<T> GetFirst(bool isTracking = true);
     }
