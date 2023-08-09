@@ -50,7 +50,7 @@ namespace OnlineMuhasebeServer.Persistence.Repositories.GenericRepositories.Comp
             return await GetFirstCompiled(_context, isTracking);
         }
 
-        public async Task<T> GetFirstByExpression(Expression<Func<T, bool>> expression, bool isTracking = true)
+        public async Task<T> GetFirstByExpression(Expression<Func<T, bool>> expression,CancellationToken cancellationToken=default, bool isTracking = true)
         {
             T entity = null;
 

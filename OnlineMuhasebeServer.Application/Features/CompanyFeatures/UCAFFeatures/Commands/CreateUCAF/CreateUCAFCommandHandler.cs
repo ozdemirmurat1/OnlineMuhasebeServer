@@ -21,7 +21,7 @@ namespace OnlineMuhasebeServer.Application.Features.CompanyFeatures.UCAFFeatures
 
         public async Task<CreateUCAFCommandResponse> Handle(CreateUCAFCommand request, CancellationToken cancellationToken)
         {
-            UniformChartOfAccount ucaf=await _ucafService.GetByCode(request.Code);
+            UniformChartOfAccount ucaf=await _ucafService.GetByCode(request.Code, cancellationToken);
 
             if (ucaf != null) throw new Exception("Bu hesap planı kodu daha önce oluşturulmuş");
 

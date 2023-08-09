@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineMuhasebeServer.UnitTest.Features.AppFeatures.MainFeatures
+namespace OnlineMuhasebeServer.UnitTest.Features.AppFeatures.MainRoleFeatures
 {
     public sealed class CreateMainRoleCommandUnitTest
     {

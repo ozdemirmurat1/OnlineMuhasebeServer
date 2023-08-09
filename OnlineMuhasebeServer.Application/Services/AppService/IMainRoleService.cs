@@ -14,5 +14,7 @@ namespace OnlineMuhasebeServer.Application.Services.AppService
         Task CreateAsync(MainRole role, CancellationToken cancellationToken);
 
         Task CreateRangeAsync(List<MainRole> newMainRoles, CancellationToken cancellationToken);
+
+        IQueryable<MainRole> GetAll();
     }
 }

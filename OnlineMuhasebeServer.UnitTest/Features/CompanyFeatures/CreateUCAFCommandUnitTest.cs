@@ -23,7 +23,7 @@ namespace OnlineMuhasebeServer.UnitTest.Features.CompanyFeatures
         [Fact]
         public async Task UCAFShouldBeNull()
         {
-            UniformChartOfAccount ucaf = await _ucafService.Object.GetByCode("100.01.001");
+            UniformChartOfAccount ucaf = await _ucafService.Object.GetByCode("100.01.001",default);
             ucaf.ShouldBeNull();
         }
 

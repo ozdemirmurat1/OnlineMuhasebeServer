@@ -49,9 +49,9 @@ namespace OnlineMuhasebeServer.Persistence.Services.CompanyServices
             await _unitOfWork.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task<UniformChartOfAccount> GetByCode(string code)
+        public async Task<UniformChartOfAccount> GetByCode(string code,CancellationToken cancellationToken)
         {
-            return await _queryRepository.GetFirstByExpression(p=>p.Code == code);
+            return await _queryRepository.GetFirstByExpression(p=>p.Code == code,cancellationToken);
         }
     }
 }

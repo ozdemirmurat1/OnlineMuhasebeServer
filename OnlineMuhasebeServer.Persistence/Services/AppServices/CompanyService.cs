@@ -37,9 +37,9 @@ namespace OnlineMuhasebeServer.Persistence.Services.AppServices
             await _appUnitOfWork.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task<Company?> GetCompanyByName(string name)
+        public async Task<Company?> GetCompanyByName(string name,CancellationToken cancellationToken)
         {
-            return await _companyQueryRepository.GetFirstByExpression(p=>p.Name==name);
+            return await _companyQueryRepository.GetFirstByExpression(p=>p.Name==name,cancellationToken,false);
         }
 
         public async Task MigrateCompanyDatabases()

@@ -19,7 +19,7 @@ namespace OnlineMuhasebeServer.UnitTest.Features.AppFeatures.CompanyFeatures
         [Fact]
         public async Task CompanyShouldBeNull()
         {
-            Company company = (await _companyService.Object.GetCompanyByName("Murat Ozdemir"))!;
+            Company company = (await _companyService.Object.GetCompanyByName("Murat Ozdemir",default))!;
             company.ShouldBeNull();
         }
 

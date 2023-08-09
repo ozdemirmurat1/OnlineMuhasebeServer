@@ -23,7 +23,7 @@ namespace OnlineMuhasebeServer.Application.Features.AppFeatures.RoleFeatures.Que
 
         public async Task<GetAllRolesQueryResponse> Handle(GetAllRolesQuery request, CancellationToken cancellationToken)
         {
-            IList<AppRole> roles = await _roleService.GetStaticRolesAsync();
+            IList<AppRole> roles = await _roleService.GetAllRolesAsync();
             return new GetAllRolesQueryResponse (roles);
         }
     }
