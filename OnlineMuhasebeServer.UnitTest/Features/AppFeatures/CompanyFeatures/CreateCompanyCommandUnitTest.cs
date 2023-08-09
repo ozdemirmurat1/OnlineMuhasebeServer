@@ -5,7 +5,7 @@ using OnlineMuhasebeServer.Domain.AppEntities;
 using OnlineMuhasebeServer.Persistence.Services.AppServices;
 using Shouldly;
 
-namespace OnlineMuhasebeServer.UnitTest.Features.AppFeatures.CompanyFeatures.Commands
+namespace OnlineMuhasebeServer.UnitTest.Features.AppFeatures.CompanyFeatures
 {
     public sealed class CreateCompanyCommandUnitTest
     {
@@ -33,7 +33,7 @@ namespace OnlineMuhasebeServer.UnitTest.Features.AppFeatures.CompanyFeatures.Com
                 UserId: "",
                 Password: "");
 
-            var handler=new CreateCompanyCommandHandler(_companyService.Object);
+            var handler = new CreateCompanyCommandHandler(_companyService.Object);
 
             CreateCompanyCommandResponse response = await handler.Handle(command, default);
             response.ShouldNotBeNull();

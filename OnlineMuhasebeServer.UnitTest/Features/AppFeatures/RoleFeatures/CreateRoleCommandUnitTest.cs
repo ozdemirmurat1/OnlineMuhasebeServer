@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineMuhasebeServer.UnitTest.Features.AppFeatures.RoleFeatures.Commands
+namespace OnlineMuhasebeServer.UnitTest.Features.AppFeatures.RoleFeatures
 {
     public sealed class CreateRoleCommandUnitTest
     {
@@ -34,7 +34,7 @@ namespace OnlineMuhasebeServer.UnitTest.Features.AppFeatures.RoleFeatures.Comman
                 Code: "UCAF.Create",
                 Name: "Hesap Planı Kayıt Ekleme");
 
-            var handler=new CreateRoleCommandHandler(_roleServiceMock.Object);
+            var handler = new CreateRoleCommandHandler(_roleServiceMock.Object);
 
             CreateRoleCommandResponse response = await handler.Handle(command, default);
             response.ShouldNotBeNull();

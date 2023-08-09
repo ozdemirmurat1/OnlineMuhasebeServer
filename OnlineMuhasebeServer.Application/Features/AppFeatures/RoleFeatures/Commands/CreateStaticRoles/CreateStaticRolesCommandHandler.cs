@@ -8,18 +8,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineMuhasebeServer.Application.Features.AppFeatures.RoleFeatures.Commands.CreateAllRoles
+namespace OnlineMuhasebeServer.Application.Features.AppFeatures.RoleFeatures.Commands.CreateStaticRoles
 {
-    public sealed class CreateAllRolesCommandHandler : ICommandHandler<CreateAllRolesCommand, CreateAllRolesCommandResponse>
+    public sealed class CreateStaticRolesCommandHandler : ICommandHandler<CreateStaticRolesCommand, CreateStaticRolesCommandResponse>
     {
         private readonly IRoleService _roleService;
 
-        public CreateAllRolesCommandHandler(IRoleService roleService)
+        public CreateStaticRolesCommandHandler(IRoleService roleService)
         {
             _roleService = roleService;
         }
 
-        public async Task<CreateAllRolesCommandResponse> Handle(CreateAllRolesCommand request, CancellationToken cancellationToken)
+        public async Task<CreateStaticRolesCommandResponse> Handle(CreateStaticRolesCommand request, CancellationToken cancellationToken)
         {
             IList<AppRole> originalRoleList=RoleList.GetStaticRoles();
             IList<AppRole> newRoleList=new List<AppRole>();

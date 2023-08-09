@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineMuhasebeServer.UnitTest.Features.AppFeatures.RoleFeatures.Commands
+namespace OnlineMuhasebeServer.UnitTest.Features.AppFeatures.RoleFeatures
 {
     public sealed class DeleteRoleCommandUnitTest
     {
@@ -23,7 +23,7 @@ namespace OnlineMuhasebeServer.UnitTest.Features.AppFeatures.RoleFeatures.Comman
         public async Task AppRoleShouldNotBeNull()
         {
             _roleServiceMock.Setup(
-                x=>x.GetById(It.IsAny<string>()))
+                x => x.GetById(It.IsAny<string>()))
                 .ReturnsAsync(new Domain.AppEntities.Identity.AppRole());
         }
 
@@ -37,7 +37,7 @@ namespace OnlineMuhasebeServer.UnitTest.Features.AppFeatures.RoleFeatures.Comman
                 x => x.GetById(It.IsAny<string>()))
                 .ReturnsAsync(new Domain.AppEntities.Identity.AppRole());
 
-            var handler=new DeleteRoleCommandHandler(_roleServiceMock.Object);
+            var handler = new DeleteRoleCommandHandler(_roleServiceMock.Object);
             DeleteRoleCommandResponse response = await handler.Handle(command, default);
             response.ShouldNotBeNull();
             response.Message.ShouldNotBeEmpty();

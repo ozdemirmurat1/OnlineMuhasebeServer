@@ -19,7 +19,7 @@ namespace OnlineMuhasebeServer.Application.Services.AppService
 
         Task DeleteAsync(AppRole appRole);
 
-        Task<IList<AppRole>> GetAllRolesAsync();
+        Task<IList<AppRole>> GetStaticRolesAsync();
 
         Task<AppRole> GetById(string id);
 

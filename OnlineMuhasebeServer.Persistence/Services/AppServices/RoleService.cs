@@ -45,7 +45,7 @@ namespace OnlineMuhasebeServer.Persistence.Services.AppServices
             await _roleManager.DeleteAsync(appRole);
         }
 
-        public async Task<IList<AppRole>> GetAllRolesAsync()
+        public async Task<IList<AppRole>> GetStaticRolesAsync()
         {
             IList<AppRole> roles = await _roleManager.Roles.ToListAsync();
             return roles;

@@ -5,7 +5,7 @@ using OnlineMuhasebeServer.Application.Services.AppService;
 using OnlineMuhasebeServer.Domain.AppEntities.Identity;
 using Shouldly;
 
-namespace OnlineMuhasebeServer.UnitTest.Features.AppFeatures.RoleFeatures.Commands
+namespace OnlineMuhasebeServer.UnitTest.Features.AppFeatures.RoleFeatures
 {
     public sealed class UpdateRoleCommandUnitTest
     {
@@ -20,7 +20,7 @@ namespace OnlineMuhasebeServer.UnitTest.Features.AppFeatures.RoleFeatures.Comman
         public async Task AppRoleShouldNotBe()
         {
             _ = _roleServiceMock.Setup(
-                x=>x.GetById(It.IsAny<string>()))
+                x => x.GetById(It.IsAny<string>()))
                 .ReturnsAsync(new AppRole());
         }
 

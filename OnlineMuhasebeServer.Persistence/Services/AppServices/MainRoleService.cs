@@ -29,6 +29,12 @@ namespace OnlineMuhasebeServer.Persistence.Services.AppServices
             await _unitOfWork.SaveChangesAsync(cancellationToken);
         }
 
+        public async Task CreateRangeAsync(List<MainRole> newMainRoles,CancellationToken cancellationToken)
+        {
+            await _mainRoleCommandRepository.AddRangeAsync(newMainRoles,cancellationToken);
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
+        }
+
         public async Task<MainRole> GetByTitleAndCompanyId(string title, string companyId,CancellationToken cancellationToken)
         {
             //if(companyId==null) return await _mainRoleQueryRepository.GetFirstByExpression(p=>p.Title==title);

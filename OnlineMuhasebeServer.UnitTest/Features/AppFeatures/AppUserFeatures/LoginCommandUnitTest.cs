@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineMuhasebeServer.UnitTest.Features.AppFeatures.AppUserFeatures.Commands
+namespace OnlineMuhasebeServer.UnitTest.Features.AppFeatures.AppUserFeatures
 {
     internal class LoginCommandUnitTest
     {

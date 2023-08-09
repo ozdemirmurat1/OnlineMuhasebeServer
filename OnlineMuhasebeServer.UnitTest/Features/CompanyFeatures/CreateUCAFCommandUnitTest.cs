@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineMuhasebeServer.UnitTest.Features.CompanyFeatures.Commands
+namespace OnlineMuhasebeServer.UnitTest.Features.CompanyFeatures
 {
     public sealed class CreateUCAFCommandUnitTest
     {

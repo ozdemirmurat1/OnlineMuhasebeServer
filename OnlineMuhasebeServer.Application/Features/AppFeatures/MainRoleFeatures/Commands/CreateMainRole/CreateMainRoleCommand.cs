@@ -10,5 +10,5 @@ namespace OnlineMuhasebeServer.Application.Features.AppFeatures.MainRoleFeatures
     public sealed record CreateMainRoleCommand(
         string Title,
         bool IsRoleCreatedByAdmin=false,
-        string CompanyId=null) : ICommand<CreateMainRoleResponse>;
+        string CompanyId=null) : ICommand<CreateMainRoleCommandResponse>;
 }

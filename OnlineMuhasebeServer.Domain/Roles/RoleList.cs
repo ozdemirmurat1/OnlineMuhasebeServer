@@ -1,4 +1,5 @@
-﻿using OnlineMuhasebeServer.Domain.AppEntities.Identity;
+﻿using OnlineMuhasebeServer.Domain.AppEntities;
+using OnlineMuhasebeServer.Domain.AppEntities.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +41,27 @@ namespace OnlineMuhasebeServer.Domain.Roles
             #endregion
 
             return appRoles;
+        }
+
+        public static List<MainRole> GetStaticMainRoles()
+        {
+            List<MainRole> mainRoles = new List<MainRole>
+            {
+                new MainRole(
+                    id:Guid.NewGuid().ToString(),
+                    title:"Admin",
+                    ısRoleCreatedByAdmin:true),
+                new MainRole(
+                    id:Guid.NewGuid().ToString(),
+                    title:"Yönetici",
+                    ısRoleCreatedByAdmin:true),
+                new MainRole(
+                    id:Guid.NewGuid().ToString(),
+                    title:"Kullanıcı",
+                    ısRoleCreatedByAdmin:true)
+            };
+
+            return mainRoles;
         }
 
         #region RoleTitleName

@@ -12,5 +12,7 @@ namespace OnlineMuhasebeServer.Application.Services.AppService
         Task<MainRole> GetByTitleAndCompanyId(string title,string companyId, CancellationToken cancellationToken);
 
         Task CreateAsync(MainRole role, CancellationToken cancellationToken);
+
+        Task CreateRangeAsync(List<MainRole> newMainRoles, CancellationToken cancellationToken);
     }
 }
