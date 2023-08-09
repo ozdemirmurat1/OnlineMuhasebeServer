@@ -27,7 +27,7 @@ namespace OnlineMuhasebeServer.Application.Features.AppFeatures.MainRoleFeatures
             MainRole mainRole = new(
                 id: Guid.NewGuid().ToString(),
                 title: request.Title,
-                ısRoleCreatedByAdmin: request.IsRoleCreatedByAdmin,
+                isRoleCreatedByAdmin: request.IsRoleCreatedByAdmin,
                 companyId: request.CompanyId);
 
             await _mainRoleService.CreateAsync(mainRole, cancellationToken);

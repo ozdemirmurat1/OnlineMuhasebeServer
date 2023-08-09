@@ -26,8 +26,9 @@ namespace OnlineMuhasebeServer.Presentation.Controller
         }
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> CreateStaticMainRoles(CreateStaticMainRolesCommand request, CancellationToken cancellationToken)
+        public async Task<IActionResult> CreateStaticMainRoles(CancellationToken cancellationToken)
         {
+            CreateStaticMainRolesCommand request = new(null);
             CreateStaticMainRolesCommandResponse response = await _mediator.Send(request, cancellationToken);
             return Ok(response);
         }

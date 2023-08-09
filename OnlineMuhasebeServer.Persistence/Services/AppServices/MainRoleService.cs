@@ -14,9 +14,9 @@ namespace OnlineMuhasebeServer.Persistence.Services.AppServices
     {
         private readonly IMainRoleCommandRepository _mainRoleCommandRepository;
         private readonly IMainRoleQueryRepository _mainRoleQueryRepository;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IAppUnitOfWork _unitOfWork;
 
-        public MainRoleService(IMainRoleCommandRepository mainRoleCommandRepository, IMainRoleQueryRepository mainRoleQueryRepository, IUnitOfWork unitOfWork)
+        public MainRoleService(IMainRoleCommandRepository mainRoleCommandRepository, IMainRoleQueryRepository mainRoleQueryRepository, IAppUnitOfWork unitOfWork)
         {
             _mainRoleCommandRepository = mainRoleCommandRepository;
             _mainRoleQueryRepository = mainRoleQueryRepository;
@@ -42,7 +42,7 @@ namespace OnlineMuhasebeServer.Persistence.Services.AppServices
 
         public async Task<MainRole> GetByTitleAndCompanyId(string title, string companyId,CancellationToken cancellationToken)
         {
-            //if(companyId==null) return await _mainRoleQueryRepository.GetFirstByExpression(p=>p.Title==title);
+            //if(companyId==null) return await _mainRoleQueryRepository.GetFirstByExpression(p=>p.Title==title,cancellationToken,false);
             // Kaydı takip etmicem sadece sorgulama yapmak istiyorum bu yüzden isTracking=false
 
             return await _mainRoleQueryRepository.GetFirstByExpression(p=>p.Title==title && p.CompanyId==companyId,cancellationToken,false);

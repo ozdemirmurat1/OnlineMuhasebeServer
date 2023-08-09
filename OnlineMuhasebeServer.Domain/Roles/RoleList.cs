@@ -50,15 +50,15 @@ namespace OnlineMuhasebeServer.Domain.Roles
                 new MainRole(
                     id:Guid.NewGuid().ToString(),
                     title:"Admin",
-                    ısRoleCreatedByAdmin:true),
+                    isRoleCreatedByAdmin:true),
                 new MainRole(
                     id:Guid.NewGuid().ToString(),
                     title:"Yönetici",
-                    ısRoleCreatedByAdmin:true),
+                    isRoleCreatedByAdmin:true),
                 new MainRole(
                     id:Guid.NewGuid().ToString(),
                     title:"Kullanıcı",
-                    ısRoleCreatedByAdmin:true)
+                    isRoleCreatedByAdmin:true)
             };
 
             return mainRoles;
