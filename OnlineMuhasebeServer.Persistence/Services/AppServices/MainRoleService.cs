@@ -47,5 +47,10 @@ namespace OnlineMuhasebeServer.Persistence.Services.AppServices
 
             return await _mainRoleQueryRepository.GetFirstByExpression(p=>p.Title==title && p.CompanyId==companyId,cancellationToken,false);
         }
+
+        public async Task RemoveByIdAsync(string id)
+        {
+            await _mainRoleCommandRepository.RemoveById(id);
+        }
     }
 }

@@ -39,7 +39,6 @@ namespace OnlineMuhasebeServer.UnitTest.Features.AppFeatures.MainRoleFeatures
         {
             var command = new CreateMainRoleCommand(
                 Title: "Admin",
-                IsRoleCreatedByAdmin: false,
                 CompanyId: "a78db2ff-44b7-4483-b80f-89e06ae2d675");
 
             var handler = new CreateMainRoleCommandHandler(_mainRoleService.Object);

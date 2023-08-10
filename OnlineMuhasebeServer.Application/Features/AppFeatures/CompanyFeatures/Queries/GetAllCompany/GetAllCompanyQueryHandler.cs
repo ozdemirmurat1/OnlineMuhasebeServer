@@ -1,4 +1,6 @@
-﻿using OnlineMuhasebeServer.Application.Messaging;
+﻿using Microsoft.EntityFrameworkCore;
+using OnlineMuhasebeServer.Application.Messaging;
+using OnlineMuhasebeServer.Application.Services.AppService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +11,17 @@ namespace OnlineMuhasebeServer.Application.Features.AppFeatures.CompanyFeatures.
 {
     public sealed class GetAllCompanyQueryHandler : IQueryHandler<GetAllCompanyQuery, GetAllCompanyQueryResponse>
     {
-        public Task<GetAllCompanyQueryResponse> Handle(GetAllCompanyQuery request, CancellationToken cancellationToken)
+        private readonly ICompanyService _companyService;
+
+        public GetAllCompanyQueryHandler(ICompanyService companyService)
         {
-            throw new NotImplementedException();
+            _companyService = companyService;
+        }
+
+        public async Task<GetAllCompanyQueryResponse> Handle(GetAllCompanyQuery request, CancellationToken cancellationToken)
+        {
+            var result = _companyService.GetAll();
+            return new GetAllCompanyQueryResponse(await result.ToListAsync());
         }
     }
 }
