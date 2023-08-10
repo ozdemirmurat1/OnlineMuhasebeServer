@@ -18,5 +18,7 @@ namespace OnlineMuhasebeServer.Application.Services.AppService
         IQueryable<MainRole> GetAll();
 
         Task RemoveByIdAsync(string id);
+
+        Task GetByIdAsync(string id);
     }
 }
