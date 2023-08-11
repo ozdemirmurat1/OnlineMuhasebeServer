@@ -20,7 +20,7 @@ namespace OnlineMuhasebeServer.Application.Features.AppFeatures.MainRoleFeatures
 
         public async Task<UpdateMainRoleCommandResponse> Handle(UpdateMainRoleCommand request, CancellationToken cancellationToken)
         {
-            MainRole mainRole = await _mainRoleService.GetById(request.Id);
+            MainRole mainRole = await _mainRoleService.GetByIdAsync(request.Id);
 
             if (mainRole == null) throw new Exception("Bu ana rol bulunamadı!");
 

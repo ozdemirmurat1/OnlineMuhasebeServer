@@ -7,6 +7,6 @@ using System.Threading.Tasks;
 namespace OnlineMuhasebeServer.Application.Features.AppFeatures.MainRoleFeatures.Commands.UpdateMainRole
 {
     public sealed record UpdateMainRoleCommandResponse(
-        string Message="Ana rol kaydı başarıyla silindi!");
+        string Message="Ana rol kaydı başarıyla güncellendi!");
 
 }
