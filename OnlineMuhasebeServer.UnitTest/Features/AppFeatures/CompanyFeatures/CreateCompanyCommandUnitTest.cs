@@ -1,8 +1,8 @@
 ﻿using Moq;
 using OnlineMuhasebeServer.Application.Features.AppFeatures.CompanyFeatures.Commands.CreateCompany;
-using OnlineMuhasebeServer.Application.Services.AppService;
+using OnlineMuhasebeServer.Application.Services.AppServices;
 using OnlineMuhasebeServer.Domain.AppEntities;
-using OnlineMuhasebeServer.Persistence.Services.AppServices;
+using OnlineMuhasebeServer.Persistence.Services.AppServicess;
 using Shouldly;
 
 namespace OnlineMuhasebeServer.UnitTest.Features.AppFeatures.CompanyFeatures
