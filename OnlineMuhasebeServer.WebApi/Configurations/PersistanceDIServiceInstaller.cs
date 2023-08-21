@@ -12,6 +12,9 @@ using OnlineMuhasebeServer.Domain;
 using OnlineMuhasebeServer.Persistence.UnitOfWorks;
 using OnlineMuhasebeServer.Domain.Repositories.AppDbContext.MainRoleRepositories;
 using OnlineMuhasebeServer.Persistence.Repositories.AppDbContext.MainRoleRepositories;
+using OnlineMuhasebeServer.Persistence.Services.AppServices;
+using OnlineMuhasebeServer.Domain.Repositories.AppDbContext.MainRoleAndRoleRelationshipRepositories;
+using OnlineMuhasebeServer.Persistence.Repositories.AppDbContext.MainRoleAndRoleRLRepositories;
 
 namespace OnlineMuhasebeServer.WebApi.Configurations
 {
@@ -36,6 +39,7 @@ namespace OnlineMuhasebeServer.WebApi.Configurations
             services.AddScoped<ICompanyService, CompanyService>();
             services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IMainRoleService, MainRoleService>();
+            services.AddScoped<IMainRoleAndRoleRelationshipService, MainRoleAndRoleRelationshipService>();
             #endregion
 
             
@@ -54,6 +58,8 @@ namespace OnlineMuhasebeServer.WebApi.Configurations
             services.AddScoped<ICompanyQueryRepository, CompanyQueryRepository>();
             services.AddScoped<IMainRoleCommandRepository,MainRoleCommandRepository>();
             services.AddScoped<IMainRoleQueryRepository, MainRoleQueryRepository>();
+            services.AddScoped<IMainRoleAndRoleRelationshipCommandRepository,MainRoleAndRoleRelationshipCommandRepository>();
+            services.AddScoped<IMainRoleAndRoleRelationshipQueryRepository,MainRoleAndRoleRelationshipQueryRepository>();
             #endregion
 
 
