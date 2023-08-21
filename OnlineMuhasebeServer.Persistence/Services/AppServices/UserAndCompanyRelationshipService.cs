@@ -23,24 +23,26 @@ namespace OnlineMuhasebeServer.Persistence.Services.AppServices
             _unitOfWork = unitOfWork;
         }
 
-        public Task CreateAsync(UserAndCompanyRelationship userAndCompanyRelationship)
+        public async Task CreateAsync(UserAndCompanyRelationship userAndCompanyRelationship,CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            await _commandRepository.AddAsync(userAndCompanyRelationship, cancellationToken);
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
         }
 
-        public Task<UserAndCompanyRelationship> GetByIdAsync(string id)
+        public async Task<UserAndCompanyRelationship> GetByIdAsync(string id)
         {
-            throw new NotImplementedException();
+            return await _queryRepository.GetById(id);
         }
 
-        public Task<UserAndCompanyRelationship> GetByUserIdAndCompanyId(string userId, string companyId)
+        public async Task<UserAndCompanyRelationship> GetByUserIdAndCompanyId(string userId, string companyId,CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _queryRepository.GetFirstByExpression(p => p.AppUserId == userId && p.CompanyId == companyId, cancellationToken);
         }
 
-        public Task RemoveByIdAsync(string id)
+        public async Task RemoveByIdAsync(string id)
         {
-            throw new NotImplementedException();
+            await _commandRepository.RemoveById(id);
+            await _unitOfWork.SaveChangesAsync();
         }
     }
 }
