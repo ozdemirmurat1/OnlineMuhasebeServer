@@ -1,4 +1,6 @@
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using OnlineMuhasebeServer.Application.Features.AppFeatures.MainRoleAndRoleRLFeatures.Commands.CreateMainRoleAndRoleRL;
 using OnlineMuhasebeServer.Presentation.Abstraction; 
 
 namespace OnlineMuhasebeServer.Presentation.Controller;
@@ -6,4 +8,12 @@ namespace OnlineMuhasebeServer.Presentation.Controller;
 public class MainRoleAndRoleRelationshipsController : ApiController
 {
     public MainRoleAndRoleRelationshipsController(IMediator mediator) : base(mediator) {}
+
+    [HttpPost("[action]")]
+    public async Task<IActionResult> Create(CreateMainRoleAndRoleRLCommand request)
+    {
+        CreateMainRoleAndRoleRLCommandResponse response=await _mediator.Send(request);
+        return Ok(response);
+    }
+
 }

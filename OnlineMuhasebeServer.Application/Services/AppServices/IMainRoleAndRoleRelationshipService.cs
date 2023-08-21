@@ -16,5 +16,7 @@ namespace OnlineMuhasebeServer.Application.Services.AppServices
         IQueryable<MainRoleAndRoleRelationship> GetAll();
 
         Task<MainRoleAndRoleRelationship> GetByIdAsync(string id);
+
+        Task<MainRoleAndRoleRelationship> GetByRoleIdAndMainRoleId(string roleId,string mainRoleId, CancellationToken cancellationToken = default);
     }
 }

@@ -34,19 +34,27 @@ namespace OnlineMuhasebeServer.Persistence.Services.AppServices
             return _queryRepository.GetAll();
         }
 
-        public Task<MainRoleAndRoleRelationship> GetByIdAsync(string id)
+        public async Task<MainRoleAndRoleRelationship> GetByIdAsync(string id)
         {
-            throw new NotImplementedException();
+            return await _queryRepository.GetById(id);
         }
 
-        public Task RemoveByIdAsync(string id)
+        public async Task<MainRoleAndRoleRelationship> GetByRoleIdAndMainRoleId(string roleId, string mainRoleId,CancellationToken cancellationToken=default)
         {
-            throw new NotImplementedException();
+            return await _queryRepository.GetFirstByExpression(p=>p.RoleId==roleId && p.MainRoleId==mainRoleId,cancellationToken);
         }
 
-        public Task UpdateAsync(MainRoleAndRoleRelationship mainRoleAndRoleRelationship)
+        public async Task RemoveByIdAsync(string id)
         {
-            throw new NotImplementedException();
+            await _commandRepository.RemoveById(id);
+            await _unitOfWork.SaveChangesAsync();
+        }
+
+        public async Task UpdateAsync(MainRoleAndRoleRelationship mainRoleAndRoleRelationship)
+        {
+            _commandRepository.Update(mainRoleAndRoleRelationship);
+            await _unitOfWork.SaveChangesAsync();
+
         }
     }
 }
