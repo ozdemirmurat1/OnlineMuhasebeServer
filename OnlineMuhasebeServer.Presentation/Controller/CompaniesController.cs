@@ -41,20 +41,20 @@ namespace OnlineMuhasebeServer.Presentation.Controller
         }
 
 
-        [HttpGet]
-        public async Task<IActionResult> CheckCancellationToken(CancellationToken cancellationToken)
-        {
-            try
-            {
-                await Task.Delay(10000,cancellationToken);
-                Console.WriteLine("Cancellation Token çalışmadı. İşlemi tamamladım!");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Cancellation Token çalıştı ve işlemi iptal ettim!");
-            }
+        //[HttpGet]
+        //public async Task<IActionResult> CheckCancellationToken(CancellationToken cancellationToken)
+        //{
+        //    try
+        //    {
+        //        await Task.Delay(10000,cancellationToken);
+        //        Console.WriteLine("Cancellation Token çalışmadı. İşlemi tamamladım!");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine("Cancellation Token çalıştı ve işlemi iptal ettim!");
+        //    }
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
     }
 }
