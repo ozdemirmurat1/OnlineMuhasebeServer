@@ -24,6 +24,11 @@ namespace OnlineMuhasebeServer.Persistence.Services.AppServices
             await _unitOfWork.SaveChangesAsync(cancellationToken);
         }
 
+        public async Task<MainRoleAndUserRelationship> GetByIdAsync(string id,bool tracking)
+        {
+           return  await _queryRepository.GetById(id,tracking);
+        }
+
         public async Task<MainRoleAndUserRelationship> GetByUserIdCompanyIdAndMainRoleIdAsync(string userId, string companyId, string mainRoleId,CancellationToken cancellationToken)
         {
             return await _queryRepository.GetFirstByExpression(p => p.UserId == userId && p.CompanyId == companyId && p.MainRoleId == mainRoleId, cancellationToken);
