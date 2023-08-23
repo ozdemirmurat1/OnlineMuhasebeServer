@@ -4,11 +4,6 @@ using OnlineMuhasebeServer.Application.Features.AppFeatures.CompanyFeatures.Comm
 using OnlineMuhasebeServer.Application.Features.AppFeatures.CompanyFeatures.Commands.MigrateCompanyDatabases;
 using OnlineMuhasebeServer.Application.Features.AppFeatures.CompanyFeatures.Queries.GetAllCompany;
 using OnlineMuhasebeServer.Presentation.Abstraction;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineMuhasebeServer.Presentation.Controller
 {
