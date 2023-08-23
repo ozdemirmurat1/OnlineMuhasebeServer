@@ -1,23 +1,37 @@
 ﻿using OnlineMuhasebeServer.Application.Services.AppServices;
 using OnlineMuhasebeServer.Domain.AppEntities;
+using OnlineMuhasebeServer.Domain.Repositories.AppDbContext.MainRoleAndUserRelationshipRepositories;
+using OnlineMuhasebeServer.Domain.UnitOfWorks;
 
 namespace OnlineMuhasebeServer.Persistence.Services.AppServices
 {
     public class MainRoleAndUserRelationshipService : IMainRoleAndUserRelationshipService
     {
-        public Task CreateAsync(MainRoleAndUserRelationship mainRoleAndUserRelationship)
+        private readonly IMainRoleAndUserRelationshipCommandRepository _commandRepository;
+        private readonly IMainRoleAndUserRelationshipQueryRepository _queryRepository;
+        private readonly IAppUnitOfWork _unitOfWork;
+
+        public MainRoleAndUserRelationshipService(IMainRoleAndUserRelationshipCommandRepository commandRepository, IMainRoleAndUserRelationshipQueryRepository queryRepository, IAppUnitOfWork unitOfWork)
         {
-            throw new NotImplementedException();
+            _commandRepository = commandRepository;
+            _queryRepository = queryRepository;
+            _unitOfWork = unitOfWork;
         }
 
-        public Task<MainRoleAndUserRelationship> GetByUserIdCompanyIdAndMainRoleIdAsync(string userId, string companyId, string mainRoleId)
+        public async Task CreateAsync(MainRoleAndUserRelationship mainRoleAndUserRelationship,CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            await _commandRepository.AddAsync(mainRoleAndUserRelationship, cancellationToken);
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
         }
 
-        public Task RemoveByIdAsync(string id)
+        public async Task<MainRoleAndUserRelationship> GetByUserIdCompanyIdAndMainRoleIdAsync(string userId, string companyId, string mainRoleId,CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _queryRepository.GetFirstByExpression(p => p.UserId == userId && p.CompanyId == companyId && p.MainRoleId == mainRoleId, cancellationToken);
+        }
+
+        public async Task RemoveByIdAsync(string id)
+        {
+            await _commandRepository.RemoveById(id);
         }
     }
 }
