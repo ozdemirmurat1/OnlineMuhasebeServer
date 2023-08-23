@@ -37,6 +37,7 @@ namespace OnlineMuhasebeServer.Persistence.Services.AppServices
         public async Task RemoveByIdAsync(string id)
         {
             await _commandRepository.RemoveById(id);
+            await _unitOfWork.SaveChangesAsync();
         }
     }
 }

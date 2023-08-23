@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using OnlineMuhasebeServer.Application.Features.AppFeatures.MainRoleAndUserRLFeatures.Commands.CreateMainRoleAndUserRL;
+using OnlineMuhasebeServer.Application.Features.AppFeatures.MainRoleAndUserRLFeatures.Commands.RemoveByIdMainRoleAndUserRL;
 using OnlineMuhasebeServer.Presentation.Abstraction;
 
 namespace OnlineMuhasebeServer.Presentation.Controller
@@ -13,6 +14,13 @@ namespace OnlineMuhasebeServer.Presentation.Controller
         public async Task<IActionResult> Create(CreateMainRoleAndUserRLCommand request)
         {
             CreateMainRoleAndUserRLCommandResponse response=await _mediator.Send(request);
+            return Ok(response);
+        }
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> RemoveById(RemoveByIdMainRoleAndUserRLCommand request)
+        {
+            RemoveByIdMainRoleAndUserRLCommandResponse response = await _mediator.Send(request);
             return Ok(response);
         }
 
