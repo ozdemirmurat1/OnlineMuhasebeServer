@@ -1,4 +1,5 @@
-﻿using OnlineMuhasebeServer.Application.Services.AppServices;
+﻿using Microsoft.EntityFrameworkCore;
+using OnlineMuhasebeServer.Application.Services.AppServices;
 using OnlineMuhasebeServer.Domain.AppEntities;
 using OnlineMuhasebeServer.Domain.Repositories.AppDbContext.UserAndCompanyRelationshipRepositories;
 using OnlineMuhasebeServer.Domain.UnitOfWorks;
@@ -37,6 +38,11 @@ namespace OnlineMuhasebeServer.Persistence.Services.AppServices
         public async Task<UserAndCompanyRelationship> GetByUserIdAndCompanyId(string userId, string companyId,CancellationToken cancellationToken)
         {
             return await _queryRepository.GetFirstByExpression(p => p.AppUserId == userId && p.CompanyId == companyId, cancellationToken);
+        }
+
+        public async Task<IList<UserAndCompanyRelationship>> GetListByUserId(string userId)
+        {
+            return await _queryRepository.GetWhere(p=>p.AppUserId==userId).Include(p=>p.Company).ToListAsync();
         }
 
         public async Task RemoveByIdAsync(string id)

@@ -9,6 +9,6 @@ namespace OnlineMuhasebeServer.Application.Services.AppServices
 
         Task<bool> CheckPasswordAsync(AppUser user, string password);
 
-        Task<IList<Company>> GetCompanyListByUserIdAsync(string userId);
+        Task<IList<UserAndCompanyRelationship>> GetCompanyListByUserIdAsync(string userId);
     }
 }

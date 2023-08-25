@@ -1,24 +1,24 @@
 using OnlineMuhasebeServer.Application.Services.AppServices;
 using OnlineMuhasebeServer.Application.Services.CompanyService;
+using OnlineMuhasebeServer.Domain;
+using OnlineMuhasebeServer.Domain.Repositories.AppDbContext.CompanyRepositories;
+using OnlineMuhasebeServer.Domain.Repositories.AppDbContext.MainRoleAndRoleRelationshipRepositories;
+using OnlineMuhasebeServer.Domain.Repositories.AppDbContext.MainRoleAndUserRelationshipRepositories;
+using OnlineMuhasebeServer.Domain.Repositories.AppDbContext.MainRoleRepositories;
+using OnlineMuhasebeServer.Domain.Repositories.AppDbContext.UserAndCompanyRelationshipRepositories;
+using OnlineMuhasebeServer.Domain.Repositories.CompanyDbContext.UCAFRepositories;
+using OnlineMuhasebeServer.Domain.UnitOfWorks;
+using OnlineMuhasebeServer.Persistence;
+using OnlineMuhasebeServer.Persistence.Repositories.AppDbContext.CompanyRepositories;
+using OnlineMuhasebeServer.Persistence.Repositories.AppDbContext.MainRoleAndRoleRLRepositories;
+using OnlineMuhasebeServer.Persistence.Repositories.AppDbContext.MainRoleAndUserRLRepositories;
+using OnlineMuhasebeServer.Persistence.Repositories.AppDbContext.MainRoleRepositories;
+using OnlineMuhasebeServer.Persistence.Repositories.AppDbContext.UserAndCompanyRLRepositories;
+using OnlineMuhasebeServer.Persistence.Repositories.CompanyDbContext.UCAFRepositories;
+using OnlineMuhasebeServer.Persistence.Services.AppServices;
 using OnlineMuhasebeServer.Persistence.Services.AppServicess;
 using OnlineMuhasebeServer.Persistence.Services.CompanyServices;
-using OnlineMuhasebeServer.Persistence;
-using OnlineMuhasebeServer.Domain.Repositories.CompanyDbContext.UCAFRepositories;
-using OnlineMuhasebeServer.Persistence.Repositories.CompanyDbContext.UCAFRepositories;
-using OnlineMuhasebeServer.Domain.Repositories.AppDbContext.CompanyRepositories;
-using OnlineMuhasebeServer.Persistence.Repositories.AppDbContext.CompanyRepositories;
-using OnlineMuhasebeServer.Domain.UnitOfWorks;
-using OnlineMuhasebeServer.Domain;
 using OnlineMuhasebeServer.Persistence.UnitOfWorks;
-using OnlineMuhasebeServer.Domain.Repositories.AppDbContext.MainRoleRepositories;
-using OnlineMuhasebeServer.Persistence.Repositories.AppDbContext.MainRoleRepositories;
-using OnlineMuhasebeServer.Persistence.Services.AppServices;
-using OnlineMuhasebeServer.Domain.Repositories.AppDbContext.MainRoleAndRoleRelationshipRepositories;
-using OnlineMuhasebeServer.Persistence.Repositories.AppDbContext.MainRoleAndRoleRLRepositories;
-using OnlineMuhasebeServer.Domain.Repositories.AppDbContext.UserAndCompanyRelationshipRepositories;
-using OnlineMuhasebeServer.Persistence.Repositories.AppDbContext.UserAndCompanyRLRepositories;
-using OnlineMuhasebeServer.Domain.Repositories.AppDbContext.MainRoleAndUserRelationshipRepositories;
-using OnlineMuhasebeServer.Persistence.Repositories.AppDbContext.MainRoleAndUserRLRepositories;
 
 namespace OnlineMuhasebeServer.WebApi.Configurations
 {
@@ -46,6 +46,7 @@ namespace OnlineMuhasebeServer.WebApi.Configurations
             services.AddScoped<IMainRoleAndRoleRelationshipService, MainRoleAndRoleRelationshipService>();
             services.AddScoped<IUserAndCompanyRelationshipService, UserAndCompanyRelationshipService>();
             services.AddScoped<IMainRoleAndUserRelationshipService,MainRoleAndUserRelationshipService>();
+            services.AddScoped<IAuthService, AuthService>();
             #endregion
 
             

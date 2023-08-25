@@ -1,5 +1,4 @@
-﻿using OnlineMuhasebeServer.Domain.AppEntities;
-using OnlineMuhasebeServer.Domain.Dtos;
+﻿using OnlineMuhasebeServer.Domain.Dtos;
 
 namespace OnlineMuhasebeServer.Application.Features.AppFeatures.AuthFeatures.Commands.Login
 {

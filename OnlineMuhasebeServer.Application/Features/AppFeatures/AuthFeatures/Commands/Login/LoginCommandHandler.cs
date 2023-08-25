@@ -1,12 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using OnlineMuhasebeServer.Application.Abstractions;
 using OnlineMuhasebeServer.Application.Messaging;
 using OnlineMuhasebeServer.Application.Services.AppServices;
 using OnlineMuhasebeServer.Domain.AppEntities;
 using OnlineMuhasebeServer.Domain.AppEntities.Identity;
 using OnlineMuhasebeServer.Domain.Dtos;
-using System.ComponentModel.Design;
 
 namespace OnlineMuhasebeServer.Application.Features.AppFeatures.AuthFeatures.Commands.Login
 {
@@ -33,17 +31,17 @@ namespace OnlineMuhasebeServer.Application.Features.AppFeatures.AuthFeatures.Com
 
             if (!checkUser) throw new Exception("Şifreniz yanluş!");
 
-            IList<Company> companies = await _authService.GetCompanyListByUserIdAsync(user.Id);
+            IList<UserAndCompanyRelationship> companies = await _authService.GetCompanyListByUserIdAsync(user.Id);
 
-            IList<CompanyDto> companiesDto=companies.Select(s=>new CompanyDto(s.Id,s.Name)).ToList();
+            IList<CompanyDto> companiesDto = companies.Select(s => new CompanyDto(s.Id, s.Company.Name)).ToList();
 
             if (companies.Count() == 0) throw new Exception("Herhangi bir şirkete kayıtlı değilsiniz!");
 
             LoginCommandResponse response = new(
                 Token: await _jwtProvider.CreateTokenAsync(user),
-                Email:user.Email,
-                UserId:user.Id,
-                NameLastName:user.NameLastName,
+                Email: user.Email,
+                UserId: user.Id,
+                NameLastName: user.NameLastName,
                 Companies: companiesDto,
                 Company: companiesDto[0]);
 
