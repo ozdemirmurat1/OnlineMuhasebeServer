@@ -1,12 +1,8 @@
-﻿using OnlineMuhasebeServer.Application.Services.AppServices;
+﻿using Microsoft.EntityFrameworkCore;
+using OnlineMuhasebeServer.Application.Services.AppServices;
 using OnlineMuhasebeServer.Domain.AppEntities;
 using OnlineMuhasebeServer.Domain.Repositories.AppDbContext.MainRoleAndRoleRelationshipRepositories;
 using OnlineMuhasebeServer.Domain.UnitOfWorks;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineMuhasebeServer.Persistence.Services.AppServices
 {
@@ -37,6 +33,11 @@ namespace OnlineMuhasebeServer.Persistence.Services.AppServices
         public async Task<MainRoleAndRoleRelationship> GetByIdAsync(string id)
         {
             return await _queryRepository.GetById(id);
+        }
+
+        public async Task<IList<MainRoleAndRoleRelationship>> GetListByMainRoleIdForGetRolesAsync(string id)
+        {
+            return await _queryRepository.GetWhere(p => p.MainRoleId == id).Include(p=>p.AppRole).ToListAsync();
         }
 
         public async Task<MainRoleAndRoleRelationship> GetByRoleIdAndMainRoleId(string roleId, string mainRoleId,CancellationToken cancellationToken=default)

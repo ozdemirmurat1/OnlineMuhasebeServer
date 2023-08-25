@@ -12,9 +12,11 @@ namespace OnlineMuhasebeServer.Application.Features.AppFeatures.AuthFeatures.Que
             _authService = authService;
         }
 
-        public Task<GetRolesByUserIdAndCompanyIdQueryResponse> Handle(GetRolesByUserIdAndCompanyIdQuery request, CancellationToken cancellationToken)
+        public async Task<GetRolesByUserIdAndCompanyIdQueryResponse> Handle(GetRolesByUserIdAndCompanyIdQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            IList<string> roles = await _authService.GetRolesByUserIdAndCompanyId(request.UserId, request.CompanyId);
+
+            return new(roles);
         }
     }
 }

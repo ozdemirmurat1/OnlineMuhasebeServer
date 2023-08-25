@@ -1,9 +1,4 @@
 ﻿using OnlineMuhasebeServer.Domain.AppEntities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineMuhasebeServer.Application.Services.AppServices
 {
@@ -16,6 +11,8 @@ namespace OnlineMuhasebeServer.Application.Services.AppServices
         IQueryable<MainRoleAndRoleRelationship> GetAll();
 
         Task<MainRoleAndRoleRelationship> GetByIdAsync(string id);
+
+        Task<IList<MainRoleAndRoleRelationship>> GetListByMainRoleIdForGetRolesAsync(string id);
 
         Task<MainRoleAndRoleRelationship> GetByRoleIdAndMainRoleId(string roleId,string mainRoleId, CancellationToken cancellationToken = default);
     }
