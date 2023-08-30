@@ -11,6 +11,8 @@ namespace OnlineMuhasebeServer.WebApi.Configurations
 
             services.AddScoped<ExceptionMiddleware>();
 
+
+            // Authorization işlemlerinde AllowCredentials ve SetIsOriginAlllowed eklenir
             services.AddCors(options => options.AddDefaultPolicy(options =>
             {
                 options.AllowAnyHeader().AllowAnyMethod().AllowCredentials().SetIsOriginAllowed(options => true);
