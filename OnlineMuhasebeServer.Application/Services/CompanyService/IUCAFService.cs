@@ -1,10 +1,5 @@
 ﻿using OnlineMuhasebeServer.Application.Features.CompanyFeatures.UCAFFeatures.Commands.CreateUCAF;
 using OnlineMuhasebeServer.Domain.CompanyEntities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineMuhasebeServer.Application.Services.CompanyService
 {
@@ -12,8 +7,10 @@ namespace OnlineMuhasebeServer.Application.Services.CompanyService
     {
         Task CreateUcafAsync(CreateUCAFCommand request,CancellationToken cancellationToken);
 
-        Task<UniformChartOfAccount> GetByCode(string code, CancellationToken cancellationToken);
+        Task<UniformChartOfAccount> GetByCodeAsync(string companyId,string code, CancellationToken cancellationToken);
 
-        Task CreateMainUcafsToCompany(string companyId,CancellationToken cancellationToken);
+        Task CreateMainUcafsToCompanyAsync(string companyId,CancellationToken cancellationToken);
+
+        Task<IList<UniformChartOfAccount>> GetAllAsync(string companyId);
     }
 }

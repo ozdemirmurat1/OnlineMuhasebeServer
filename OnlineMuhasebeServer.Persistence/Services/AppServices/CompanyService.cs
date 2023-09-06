@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using OnlineMuhasebeServer.Application.Features.AppFeatures.CompanyFeatures.Commands.CreateCompany;
 using OnlineMuhasebeServer.Application.Services.AppServices;
-using OnlineMuhasebeServer.Application.Services.CompanyService;
 using OnlineMuhasebeServer.Domain.AppEntities;
 using OnlineMuhasebeServer.Domain.Repositories.AppDbContext.CompanyRepositories;
 using OnlineMuhasebeServer.Domain.UnitOfWorks;

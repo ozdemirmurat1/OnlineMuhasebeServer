@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Azure.Core;
 using Microsoft.EntityFrameworkCore;
 using OnlineMuhasebeServer.Application.Features.CompanyFeatures.UCAFFeatures.Commands.CreateUCAF;
 using OnlineMuhasebeServer.Application.Services.CompanyService;
@@ -45,12 +46,14 @@ namespace OnlineMuhasebeServer.Persistence.Services.CompanyServices
             await _unitOfWork.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task<UniformChartOfAccount> GetByCode(string code,CancellationToken cancellationToken)
+        public async Task<UniformChartOfAccount> GetByCodeAsync(string companyId, string code,CancellationToken cancellationToken)
         {
+            _context = (CompanyDbContext)_contextService.CreateDbContextInstance(companyId);
+            _queryRepository.SetDbContextInstance(_context);
             return await _queryRepository.GetFirstByExpression(p=>p.Code == code,cancellationToken);
         }
 
-        public async Task CreateMainUcafsToCompany(string companyId, CancellationToken cancellationToken)
+        public async Task CreateMainUcafsToCompanyAsync(string companyId, CancellationToken cancellationToken)
         {
             _context = (CompanyDbContext)_contextService.CreateDbContextInstance(companyId);
             _commandRepository.SetDbContextInstance(_context);
@@ -2220,6 +2223,13 @@ namespace OnlineMuhasebeServer.Persistence.Services.CompanyServices
 
             await _commandRepository.AddRangeAsync(uniformChartOfAccounts, cancellationToken);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
+        }
+
+        public async Task<IList<UniformChartOfAccount>> GetAllAsync(string companyId)
+        {
+            _context = (CompanyDbContext)_contextService.CreateDbContextInstance(companyId);
+            _queryRepository.SetDbContextInstance(_context);
+            return await _queryRepository.GetAll().ToListAsync();
         }
     }
 }
