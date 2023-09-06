@@ -2,11 +2,6 @@
 using Microsoft.EntityFrameworkCore.Design;
 using OnlineMuhasebeServer.Domain.Abstractions;
 using OnlineMuhasebeServer.Domain.AppEntities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineMuhasebeServer.Persistence.Context
 {
@@ -19,7 +14,7 @@ namespace OnlineMuhasebeServer.Persistence.Context
         {
             if (company != null)
             {
-                if (company.ServerUserId == "")
+                if (String.IsNullOrEmpty(company.ServerUserId))
                     ConnectionString = $"Server={company.ServerName};Database={company.DatabaseName}; Trusted_Connection=True;";
                 else
                     ConnectionString = $"Server={company.ServerName};Database={company.DatabaseName};User Id={company.ServerUserId} ;Password={company.ServerPassword};";
