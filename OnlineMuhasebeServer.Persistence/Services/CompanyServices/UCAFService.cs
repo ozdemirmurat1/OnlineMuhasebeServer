@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Azure.Core;
 using Microsoft.EntityFrameworkCore;
 using OnlineMuhasebeServer.Application.Features.CompanyFeatures.UCAFFeatures.Commands.CreateUCAF;
 using OnlineMuhasebeServer.Application.Services.CompanyService;
@@ -2229,7 +2228,7 @@ namespace OnlineMuhasebeServer.Persistence.Services.CompanyServices
         {
             _context = (CompanyDbContext)_contextService.CreateDbContextInstance(companyId);
             _queryRepository.SetDbContextInstance(_context);
-            return await _queryRepository.GetAll().ToListAsync();
+            return await _queryRepository.GetAll().OrderBy(p=>p.Code).ToListAsync();
         }
     }
 }
