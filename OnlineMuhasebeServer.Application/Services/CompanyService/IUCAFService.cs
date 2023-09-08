@@ -12,5 +12,7 @@ namespace OnlineMuhasebeServer.Application.Services.CompanyService
         Task CreateMainUcafsToCompanyAsync(string companyId,CancellationToken cancellationToken);
 
         Task<IList<UniformChartOfAccount>> GetAllAsync(string companyId);
+
+        Task RemoveByIdUcafAsync(string id,string companyId);
     }
 }

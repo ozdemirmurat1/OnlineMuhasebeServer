@@ -2231,5 +2231,15 @@ namespace OnlineMuhasebeServer.Persistence.Services.CompanyServices
             _queryRepository.SetDbContextInstance(_context);
             return await _queryRepository.GetAll().OrderBy(p=>p.Code).ToListAsync();
         }
+
+        public async Task RemoveByIdUcafAsync(string id,string companyId)
+        {
+            _context = (CompanyDbContext)_contextService.CreateDbContextInstance(companyId);
+            _commandRepository.SetDbContextInstance(_context);
+            _unitOfWork.SetDbContextInstance(_context);
+
+            await _commandRepository.RemoveById(id);
+            await _unitOfWork.SaveChangesAsync();
+        }
     }
 }
