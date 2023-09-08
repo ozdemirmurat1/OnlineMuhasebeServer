@@ -2241,5 +2241,25 @@ namespace OnlineMuhasebeServer.Persistence.Services.CompanyServices
             await _commandRepository.RemoveById(id);
             await _unitOfWork.SaveChangesAsync();
         }
+
+        public async Task<bool> CheckRemoveByIdUcafIsGroupAndAvailable(string id, string companyId)
+        {
+            _context = (CompanyDbContext)_contextService.CreateDbContextInstance(companyId);
+            _queryRepository.SetDbContextInstance(_context);
+
+            UniformChartOfAccount ucaf = await _queryRepository.GetById(id,false);
+            if (ucaf.Type == 'G')
+            {
+                IList<UniformChartOfAccount> list=await _queryRepository.GetWhere(p=>p.Code.StartsWith(ucaf.Code)).ToListAsync();
+                if(list.Count > 0)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+
+            return true;
+        }
     }
 }

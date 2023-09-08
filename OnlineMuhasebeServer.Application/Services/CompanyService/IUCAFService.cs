@@ -14,5 +14,7 @@ namespace OnlineMuhasebeServer.Application.Services.CompanyService
         Task<IList<UniformChartOfAccount>> GetAllAsync(string companyId);
 
         Task RemoveByIdUcafAsync(string id,string companyId);
+
+        Task<bool> CheckRemoveByIdUcafIsGroupAndAvailable(string id, string companyId);
     }
 }

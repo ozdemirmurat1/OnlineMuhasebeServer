@@ -14,6 +14,10 @@ namespace OnlineMuhasebeServer.Application.Features.CompanyFeatures.UCAFFeatures
 
         public async Task<RemoveByIdUCAFCommandResponse> Handle(RemoveByIdUCAFCommand request, CancellationToken cancellationToken)
         {
+            var checkRemoveUcafById = await _service.CheckRemoveByIdUcafIsGroupAndAvailable(request.Id, request.CompanyId);
+
+            if (!checkRemoveUcafById) throw new Exception("Hesap planına bağlı alt hesaplar olduğundan silinemiyor!");
+
             await _service.RemoveByIdUcafAsync(request.Id, request.CompanyId);
 
             return new();

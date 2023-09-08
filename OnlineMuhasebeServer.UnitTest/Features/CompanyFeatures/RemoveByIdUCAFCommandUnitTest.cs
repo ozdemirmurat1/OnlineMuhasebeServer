@@ -19,7 +19,13 @@ namespace OnlineMuhasebeServer.UnitTest.Features.CompanyFeatures
         {
             var command = new RemoveByIdUCAFCommand(
                 Id: "b696d567-e944-4b22-8a9e-31d5fcc28551",
-                CompanyId: "a78db2ff-44b7-4483-b80f-89e06ae2d675"); 
+                CompanyId: "a78db2ff-44b7-4483-b80f-89e06ae2d675");
+
+            var checkIfAvailable= _ucafService.Object.CheckRemoveByIdUcafIsGroupAndAvailable(command.Id, command.CompanyId);
+            
+            // todo düzeltilecek
+
+            
 
             var handler = new RemoveByIdUCAFCommandHandler(_ucafService.Object);
 
