@@ -39,6 +39,7 @@ namespace OnlineMuhasebeServer.Persistence.Services.CompanyServices
              UniformChartOfAccount uniformChartOfAccount= _mapper.Map<UniformChartOfAccount>(request);
 
             uniformChartOfAccount.Id = Guid.NewGuid().ToString();
+            uniformChartOfAccount.Name=uniformChartOfAccount.Name.ToUpper();
 
             await _commandRepository.AddAsync(uniformChartOfAccount, cancellationToken);
 
