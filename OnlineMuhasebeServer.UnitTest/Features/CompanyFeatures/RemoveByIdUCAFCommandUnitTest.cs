@@ -15,17 +15,23 @@ namespace OnlineMuhasebeServer.UnitTest.Features.CompanyFeatures
         }
 
         [Fact]
+        public async Task CheckRemoveByIdUcafIsGroupAndAvailableShouldBeTrue()
+        {
+            _ucafService.Setup(s =>
+            s.CheckRemoveByIdUcafIsGroupAndAvailable(
+                It.IsAny<string>(),
+                It.IsAny<string>()))
+                .ReturnsAsync(true);
+        }
+
+        [Fact]
         public async Task RemoveByIdUCAFCommandResponseShouldNotBeNull()
         {
             var command = new RemoveByIdUCAFCommand(
                 Id: "b696d567-e944-4b22-8a9e-31d5fcc28551",
                 CompanyId: "a78db2ff-44b7-4483-b80f-89e06ae2d675");
 
-            var checkIfAvailable= _ucafService.Object.CheckRemoveByIdUcafIsGroupAndAvailable(command.Id, command.CompanyId);
-            
-            // todo düzeltilecek
-
-            
+            await CheckRemoveByIdUcafIsGroupAndAvailableShouldBeTrue();
 
             var handler = new RemoveByIdUCAFCommandHandler(_ucafService.Object);
 
