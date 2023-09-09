@@ -2261,5 +2261,22 @@ namespace OnlineMuhasebeServer.Persistence.Services.CompanyServices
 
             return true;
         }
+
+        public async Task<UniformChartOfAccount> GetByIdAsync(string id, string companyId)
+        {
+            _context = (CompanyDbContext)_contextService.CreateDbContextInstance(companyId);
+            _queryRepository.SetDbContextInstance(_context);
+            return await _queryRepository.GetById(id);
+        }
+
+        public async Task UpdateAsync(UniformChartOfAccount ucaf, string companyId)
+        {
+            _context = (CompanyDbContext)_contextService.CreateDbContextInstance(companyId);
+            _commandRepository.SetDbContextInstance(_context);
+            _unitOfWork.SetDbContextInstance(_context);
+
+            _commandRepository.Update(ucaf);
+            await _unitOfWork.SaveChangesAsync();
+        }
     }
 }
