@@ -18,7 +18,9 @@ namespace OnlineMuhasebeServer.UnitTest.Features.CompanyFeatures
         [Fact]
         public async Task UCAFShouldBeNull()
         {
-            UniformChartOfAccount ucaf = await _ucafService.Object.GetByCodeAsync("","100.01.001",default);
+            string companyId = "c38f79cb-87b2-4551-a61a-f8229c714699";
+            string code = "100.01.001";
+            UniformChartOfAccount ucaf = await _ucafService.Object.GetByCodeAsync(companyId, code, default);
             ucaf.ShouldBeNull();
         }
 
