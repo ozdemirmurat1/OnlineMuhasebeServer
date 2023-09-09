@@ -24,9 +24,9 @@ app.UseExceptionMiddleware();
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication();
-
-app.UseAuthorization();
+//app.UseAuthentication();
+//AuthenticationAndAuthorizationServiceInstaller 'da tanýmladýk
+//app.UseAuthorization();
 
 app.UseCors();
 
