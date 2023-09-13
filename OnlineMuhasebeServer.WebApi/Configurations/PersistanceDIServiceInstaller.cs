@@ -6,6 +6,7 @@ using OnlineMuhasebeServer.Domain.Repositories.AppDbContext.MainRoleAndRoleRelat
 using OnlineMuhasebeServer.Domain.Repositories.AppDbContext.MainRoleAndUserRelationshipRepositories;
 using OnlineMuhasebeServer.Domain.Repositories.AppDbContext.MainRoleRepositories;
 using OnlineMuhasebeServer.Domain.Repositories.AppDbContext.UserAndCompanyRelationshipRepositories;
+using OnlineMuhasebeServer.Domain.Repositories.CompanyDbContext.ReportRepositories;
 using OnlineMuhasebeServer.Domain.Repositories.CompanyDbContext.UCAFRepositories;
 using OnlineMuhasebeServer.Domain.UnitOfWorks;
 using OnlineMuhasebeServer.Persistence;
@@ -14,6 +15,7 @@ using OnlineMuhasebeServer.Persistence.Repositories.AppDbContext.MainRoleAndRole
 using OnlineMuhasebeServer.Persistence.Repositories.AppDbContext.MainRoleAndUserRLRepositories;
 using OnlineMuhasebeServer.Persistence.Repositories.AppDbContext.MainRoleRepositories;
 using OnlineMuhasebeServer.Persistence.Repositories.AppDbContext.UserAndCompanyRLRepositories;
+using OnlineMuhasebeServer.Persistence.Repositories.CompanyDbContext.ReportRepositories;
 using OnlineMuhasebeServer.Persistence.Repositories.CompanyDbContext.UCAFRepositories;
 using OnlineMuhasebeServer.Persistence.Services.AppServices;
 using OnlineMuhasebeServer.Persistence.Services.AppServicess;
@@ -37,6 +39,7 @@ namespace OnlineMuhasebeServer.WebApi.Configurations
             #region Services
             #region CompanyDbContext
             services.AddScoped<IUCAFService, UCAFService>();
+            services.AddScoped<IReportService, ReportService>();
             #endregion
 
             #region AppDbContext
@@ -58,6 +61,9 @@ namespace OnlineMuhasebeServer.WebApi.Configurations
             #region CompanyDbContext
             services.AddScoped<IUCAFCommandRepository, UCAFCommandRepository>();
             services.AddScoped<IUCAFQueryRepository, UCAFQueryRepository>();
+
+            services.AddScoped<IReportCommandRepository,ReportCommandRepository>();
+            services.AddScoped<IReportQueryRepository, ReportQueryRepository>();
             #endregion
 
             #region AppDbContext

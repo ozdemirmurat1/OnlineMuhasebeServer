@@ -5,12 +5,12 @@ using OnlineMuhasebeServer.Persistence.Constants;
 
 namespace OnlineMuhasebeServer.Persistence.Configuration
 {
-    public sealed class UCAFConfiguration : IEntityTypeConfiguration<UniformChartOfAccount>
+    public sealed class ReportConfiguration : IEntityTypeConfiguration<Report>
     {
-        public void Configure(EntityTypeBuilder<UniformChartOfAccount> builder)
+        public void Configure(EntityTypeBuilder<Report> builder)
         {
-            builder.ToTable(TableNames.UniformChartOfAccounts);
-            builder.HasKey(p=> p.Id);
+            builder.ToTable(TableNames.Reports);
+            builder.HasKey(t => t.Id);
         }
     }
 }
