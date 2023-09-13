@@ -5,7 +5,7 @@ using OnlineMuhasebeServer.Domain.CompanyEntities;
 using OnlineMuhasebeServer.Persistence.Services.CompanyServices;
 using Shouldly;
 
-namespace OnlineMuhasebeServer.UnitTest.Features.CompanyFeatures
+namespace OnlineMuhasebeServer.UnitTest.Features.CompanyFeatures.UCAFFeatures
 {
     public sealed class UpdateUCAFCommandUnitTest
     {

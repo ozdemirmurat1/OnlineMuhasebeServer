@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using OnlineMuhasebeServer.Application.Features.CompanyFeatures.ReportFeatures.Commands.RequestReport;
 using OnlineMuhasebeServer.Application.Services.CompanyService;
 using OnlineMuhasebeServer.Domain;
 using OnlineMuhasebeServer.Domain.CompanyEntities;
@@ -31,10 +32,19 @@ namespace OnlineMuhasebeServer.Persistence.Services.CompanyServices
             return await _queryRepository.GetAll(false).OrderByDescending(p => p.CreatedDate).ToListAsync();
         }
 
-        public async Task Request(Report report, string companyId, CancellationToken cancellationToken)
+        public async Task Request(RequestReportCommand request, CancellationToken cancellationToken)
         {
-            _context = (CompanyDbContext)_contextService.CreateDbContextInstance(companyId);
+            _context = (CompanyDbContext)_contextService.CreateDbContextInstance(request.CompanyId);
             _commandRepository.SetDbContextInstance(_context);
+            _unitOfWork.SetDbContextInstance(_context);
+
+            Report report = new()
+            {
+               Id=Guid.NewGuid().ToString(),
+               Name=request.Name,
+               Status=false
+            };
+
             await _commandRepository.AddAsync(report, cancellationToken);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
         }
