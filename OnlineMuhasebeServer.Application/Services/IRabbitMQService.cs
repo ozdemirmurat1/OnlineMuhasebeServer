@@ -1,9 +1,10 @@
 ﻿using OnlineMuhasebeServer.Domain.CompanyEntities;
+using OnlineMuhasebeServer.Domain.Dtos;
 
 namespace OnlineMuhasebeServer.Application.Services
 {
     public interface IRabbitMQService
     {
-        void SendQueue(Report report, string companyId);
+        void SendQueue(ReportDto reportDto);
     }
 }
