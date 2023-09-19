@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using ClosedXML.Excel;
+using Newtonsoft.Json;
 using OnlineMuhasebeServer.Domain.AppEntities;
 using OnlineMuhasebeServer.Domain.CompanyEntities;
 using OnlineMuhasebeServer.Domain.Dtos;
@@ -57,10 +58,8 @@ namespace OnlineMuhasebeServer.RabbitMQ
 
             using (var workbook = new XLWorkbook())
             {
-                var worksheet = workbook.Worksheets.Add("Sample Sheet");
-                worksheet.Cell("A1").Value = "Hello World!";
-                worksheet.Cell("A2").FormulaA1 = "=MID(A1, 7, 5)";
-                workbook.SaveAs("HelloWorld.xlsx");
+                var ws = workbook.Worksheets.Add("Hesap Planı");
+                
             }
         }
     }
