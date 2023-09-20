@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using OnlineMuhasebeServer.Application.Services;
-using OnlineMuhasebeServer.Domain.CompanyEntities;
 using OnlineMuhasebeServer.Domain.Dtos;
 using RabbitMQ.Client;
 using System.Text;

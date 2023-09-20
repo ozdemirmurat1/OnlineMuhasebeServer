@@ -14,6 +14,7 @@ namespace OnlineMuhasebeServer.RabbitMQ
     {
         static void Main(string[] args)
         {
+            ReadQueue();
             Console.ReadLine();
         }
 
@@ -77,8 +78,8 @@ namespace OnlineMuhasebeServer.RabbitMQ
                     rowCount++;
                 }
 
-                fileName = ($"HesapPlani.{DateTime.Now}").Replace(":", ".");
-                string filePath = $"C:/Users/Murat Özdemir/Desktop/Alıştırmalar/OnlineMuhasebe/OnlineMuhasebeClient/src/assets/reports/{fileName}.xlsx";
+                fileName = ($"HesapPlani.{company.Id}.{DateTime.Now}.xlsx").Replace(":", ".");
+                string filePath = $"C:/Users/Murat Özdemir/Desktop/Alıştırmalar/OnlineMuhasebe/OnlineMuhasebeClient/src/assets/reports/{fileName}";
 
                 workbook.SaveAs(filePath);
                 
@@ -86,6 +87,13 @@ namespace OnlineMuhasebeServer.RabbitMQ
 
             Report report = companyDbContext.Set<Report>().Find(reportDto.Id);
             report.FileUrl = fileName;
+            report.Status = true;
+            report.UpdatedDate = DateTime.Now;
+
+            companyDbContext.Update(report);
+            companyDbContext.SaveChanges();
+
+            Console.WriteLine("Excel başarıyla oluşturuldu!");
         }
     }
 }
