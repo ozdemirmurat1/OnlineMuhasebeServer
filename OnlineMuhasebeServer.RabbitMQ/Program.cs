@@ -56,6 +56,8 @@ namespace OnlineMuhasebeServer.RabbitMQ
 
             IList<UniformChartOfAccount> ucafs=companyDbContext.Set<UniformChartOfAccount>().OrderBy(p=>p.Code).ToList();
 
+            string fileName = "";
+
             using (var workbook = new XLWorkbook())
             {
                 var ws = workbook.Worksheets.Add("Hesap Planı");
@@ -75,11 +77,14 @@ namespace OnlineMuhasebeServer.RabbitMQ
                     rowCount++;
                 }
 
-                string fileName = ($"HesapPlani.{DateTime.Now}").Replace(":", ".");
+                fileName = ($"HesapPlani.{DateTime.Now}").Replace(":", ".");
                 string filePath = $"C:/Users/Murat Özdemir/Desktop/Alıştırmalar/OnlineMuhasebe/OnlineMuhasebeClient/src/assets/reports/{fileName}.xlsx";
-                workbook.Save("");
+
+                workbook.SaveAs(filePath);
                 
             }
+
+            Report report=companyDbContext.Set<Report>
         }
     }
 }
