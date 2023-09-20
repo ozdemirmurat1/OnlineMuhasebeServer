@@ -84,7 +84,8 @@ namespace OnlineMuhasebeServer.RabbitMQ
                 
             }
 
-            Report report=companyDbContext.Set<Report>
+            Report report = companyDbContext.Set<Report>().Find(reportDto.Id);
+            report.FileUrl = fileName;
         }
     }
 }
