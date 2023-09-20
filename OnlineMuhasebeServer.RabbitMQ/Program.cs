@@ -54,11 +54,30 @@ namespace OnlineMuhasebeServer.RabbitMQ
 
             CompanyDbContext companyDbContext=new(company);
 
-            IList<UniformChartOfAccount> uniformChartOfAccount=companyDbContext.Set<UniformChartOfAccount>().OrderBy(p=>p.Code).ToList();
+            IList<UniformChartOfAccount> ucafs=companyDbContext.Set<UniformChartOfAccount>().OrderBy(p=>p.Code).ToList();
 
             using (var workbook = new XLWorkbook())
             {
                 var ws = workbook.Worksheets.Add("Hesap Planı");
+                ws.Range("A1").Value = company.Name + "Hesap Planı";
+
+                ws.Range("A3").Value = "Kod";
+                ws.Range("B3").Value = "Tip";
+                ws.Range("C3").Value = "Adı";
+
+                int rowCount = 4;
+
+                for (int i = 0; i < ucafs.Count(); i++)
+                {
+                    ws.Range("A" + rowCount).Value = ucafs[i].Code;
+                    ws.Range("B" + rowCount).Value = ucafs[i].Type;
+                    ws.Range("C" + rowCount).Value = ucafs[i].Name;
+                    rowCount++;
+                }
+
+                string fileName = ($"HesapPlani.{DateTime.Now}").Replace(":", ".");
+                string filePath = $"C:/Users/Murat Özdemir/Desktop/Alıştırmalar/OnlineMuhasebe/OnlineMuhasebeClient/src/assets/reports/{fileName}.xlsx";
+                workbook.Save("");
                 
             }
         }
