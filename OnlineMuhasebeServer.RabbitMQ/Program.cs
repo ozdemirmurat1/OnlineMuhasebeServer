@@ -14,26 +14,21 @@ namespace OnlineMuhasebeServer.RabbitMQ
     {
         static void Main(string[] args)
         {
-            ReadQueue();
-            Console.ReadLine();
-        }
-
-        static void ReadQueue()
-        {
             var factory = new ConnectionFactory();
             factory.Uri = new Uri("amqps://zfggoqfw:HYInPHO_PbN61Ib7ZwQM8jkbAd0M6I3B@codfish.rmq.cloudamqp.com/zfggoqfw");
 
-            using var connection=factory.CreateConnection();
+            using var connection = factory.CreateConnection();
 
-            var channel=connection.CreateModel();
+            var channel = connection.CreateModel();
 
             channel.QueueDeclare("Reports", true, false, false);
 
-            var consumer=new EventingBasicConsumer(channel);
+            var consumer = new EventingBasicConsumer(channel);
             channel.BasicConsume("Reports", true, consumer);
 
             consumer.Received += Consumer_Received;
 
+            Console.ReadLine();
         }
 
         private static void Consumer_Received(object? sender, BasicDeliverEventArgs e)
@@ -62,7 +57,12 @@ namespace OnlineMuhasebeServer.RabbitMQ
             using (var workbook = new XLWorkbook())
             {
                 var ws = workbook.Worksheets.Add("Hesap Planı");
-                ws.Range("A1").Value = company.Name + "Hesap Planı";
+                ws.Range("A1").Value = company!.Name + "Hesap Planı";
+
+                ws.Range("A1:C1").Merge();
+                ws.Range("A1").Style.Alignment.Vertical=XLAlignmentVerticalValues.Center;
+                ws.Range("A1").Style.Alignment.Horizontal=XLAlignmentHorizontalValues.Center;
+                ws.Range("A1").Style.Font.FontSize = 20;
 
                 ws.Range("A3").Value = "Kod";
                 ws.Range("B3").Value = "Tip";
@@ -73,10 +73,27 @@ namespace OnlineMuhasebeServer.RabbitMQ
                 for (int i = 0; i < ucafs.Count(); i++)
                 {
                     ws.Range("A" + rowCount).Value = ucafs[i].Code;
-                    ws.Range("B" + rowCount).Value = ucafs[i].Type;
+                    ws.Range("B" + rowCount).Value = ucafs[i].Type.ToString();
                     ws.Range("C" + rowCount).Value = ucafs[i].Name;
+
+                    if (ucafs[i].Type.ToString() == "A")
+                        ws.Range($"A{rowCount}:C{rowCount}").Style.Font.FontColor = XLColor.Red;
+                    else if(ucafs[i].Type.ToString() == "G")
+                        ws.Range($"A{rowCount}:C{rowCount}").Style.Font.FontColor = XLColor.Blue;
+
+
                     rowCount++;
                 }
+
+                ws.Range("A:C").Style.Font.Bold = true;
+                ws.Columns("A:C").AdjustToContents();
+
+                int lastRow = ws.LastRowUsed().RowNumber();
+
+                ws.Range($"A3:C{lastRow}").Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                ws.Range($"A3:C{lastRow}").Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                ws.Range($"A3:C{lastRow}").Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                ws.Range($"A3:C{lastRow}").Style.Border.LeftBorder = XLBorderStyleValues.Thin;
 
                 fileName = ($"HesapPlani.{company.Id}.{DateTime.Now}.xlsx").Replace(":", ".");
                 string filePath = $"C:/Users/Murat Özdemir/Desktop/Alıştırmalar/OnlineMuhasebe/OnlineMuhasebeClient/src/assets/reports/{fileName}";
