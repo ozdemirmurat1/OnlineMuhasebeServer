@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EntityFrameworkCorePagination.Nuget.Pagination;
+using Microsoft.EntityFrameworkCore;
 using OnlineMuhasebeServer.Domain.Abstractions;
 using OnlineMuhasebeServer.Domain.Repositories.GenericRepositories.CompanyDbContext;
 using OnlineMuhasebeServer.Persistence.Context;
@@ -67,6 +68,16 @@ namespace OnlineMuhasebeServer.Persistence.Repositories.GenericRepositories.Comp
                 result = result.AsNoTracking();
 
             return result;
+        }
+
+        public Task<PaginationResult<T>> GetAllPagination(int pageNumber = 1, int pageSize = 5)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<PaginationResult<T>> GetWherePagination(Expression<Func<T, bool>> expression, int pageNumber = 1, int pageSize = 5)
+        {
+            throw new NotImplementedException();
         }
     }
 }

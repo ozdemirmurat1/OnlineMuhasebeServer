@@ -1,12 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EntityFrameworkCorePagination.Nuget.Pagination;
+using Microsoft.EntityFrameworkCore;
 using OnlineMuhasebeServer.Domain.Abstractions;
 using OnlineMuhasebeServer.Domain.Repositories.GenericRepositories.AppDbContext;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineMuhasebeServer.Persistence.Repositories.GenericRepositories.AppDbContext
 {
@@ -73,6 +69,16 @@ namespace OnlineMuhasebeServer.Persistence.Repositories.GenericRepositories.AppD
                 result = result.AsNoTracking();
 
             return result;
+        }
+
+        public async Task<PaginationResult<T>> GetWherePagination(Expression<Func<T, bool>> expression, int pageNumber = 1, int pageSize = 5)
+        {
+            return await Entity.Where(expression).ToPagedListAsync(pageNumber, pageSize);
+        }
+
+        public async Task<PaginationResult<T>> GetAllPagination(int pageNumber = 1, int pageSize = 5)
+        {
+            return await Entity.ToPagedListAsync(pageNumber, pageSize);
         }
     }
 }

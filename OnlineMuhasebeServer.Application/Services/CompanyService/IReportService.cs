@@ -1,4 +1,5 @@
-﻿using OnlineMuhasebeServer.Application.Features.CompanyFeatures.ReportFeatures.Commands.RequestReport;
+﻿using EntityFrameworkCorePagination.Nuget.Pagination;
+using OnlineMuhasebeServer.Application.Features.CompanyFeatures.ReportFeatures.Commands.RequestReport;
 using OnlineMuhasebeServer.Domain.CompanyEntities;
 
 namespace OnlineMuhasebeServer.Application.Services.CompanyService
@@ -7,6 +8,6 @@ namespace OnlineMuhasebeServer.Application.Services.CompanyService
     {
         Task Request(RequestReportCommand request,CancellationToken cancellationToken);
 
-        Task<IList<Report>> GetAllReportsByCompanyId(string companyId);
+        Task<PaginationResult<Report>> GetAllReportsByCompanyId(string companyId,int pageNumber=1,int pageSize=5);
     }
 }

@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EntityFrameworkCorePagination.Nuget.Pagination;
 using OnlineMuhasebeServer.Application.Features.CompanyFeatures.ReportFeatures.Commands.RequestReport;
 using OnlineMuhasebeServer.Application.Services;
 using OnlineMuhasebeServer.Application.Services.CompanyService;
@@ -29,11 +29,13 @@ namespace OnlineMuhasebeServer.Persistence.Services.CompanyServices
             _rabbitMqService = rabbitMqService;
         }
 
-        public async Task<IList<Report>> GetAllReportsByCompanyId(string companyId)
+        public async Task<PaginationResult<Report>> GetAllReportsByCompanyId(string companyId, int pageNumber = 1, int pageSize = 5)
         {
             _context = (CompanyDbContext)_contextService.CreateDbContextInstance(companyId);
             _queryRepository.SetDbContextInstance(_context);
-            return await _queryRepository.GetAll(false).OrderByDescending(p => p.CreatedDate).ToListAsync();
+            var result= await _queryRepository.GetAllPagination(pageNumber,pageSize);
+            result.Datas.OrderByDescending(p => p.CreatedDate);
+            return result;
         }
 
         public async Task Request(RequestReportCommand request, CancellationToken cancellationToken)

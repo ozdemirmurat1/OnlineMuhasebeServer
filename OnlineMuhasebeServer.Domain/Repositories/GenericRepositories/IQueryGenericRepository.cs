@@ -1,16 +1,17 @@
-﻿using OnlineMuhasebeServer.Domain.Abstractions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using EntityFrameworkCorePagination.Nuget.Pagination;
+using OnlineMuhasebeServer.Domain.Abstractions;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineMuhasebeServer.Domain.Repositories.GenericRepositories
 {
     public interface IQueryGenericRepository<T>
         where T:Entity
     {
+
+        Task<PaginationResult<T>> GetAllPagination(int pageNumber = 1, int pageSize = 5);
+
+        Task<PaginationResult<T>> GetWherePagination(Expression<Func<T, bool>> expression,int pageNumber=1,int pageSize=5);
+
         IQueryable<T> GetAll(bool isTracking = true);
 
         IQueryable<T> GetWhere(Expression<Func<T, bool>> expression, bool isTracking = true);
