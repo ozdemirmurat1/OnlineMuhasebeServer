@@ -33,8 +33,7 @@ namespace OnlineMuhasebeServer.Persistence.Services.CompanyServices
         {
             _context = (CompanyDbContext)_contextService.CreateDbContextInstance(companyId);
             _queryRepository.SetDbContextInstance(_context);
-            var result= await _queryRepository.GetAllPagination(pageNumber,pageSize);
-            result.Datas.OrderByDescending(p => p.CreatedDate);
+            var result= await _queryRepository.GetAll().OrderByDescending(p=>p.CreatedDate).ToPagedListAsync(pageNumber, pageSize);
             return result;
         }
 

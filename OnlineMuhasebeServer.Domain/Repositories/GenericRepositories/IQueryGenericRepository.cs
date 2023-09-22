@@ -8,9 +8,9 @@ namespace OnlineMuhasebeServer.Domain.Repositories.GenericRepositories
         where T:Entity
     {
 
-        Task<PaginationResult<T>> GetAllPagination(int pageNumber = 1, int pageSize = 5);
+        Task<PaginationResult<T>> GetAllPagination(int pageNumber = 1, int pageSize = 5, Expression<Func<T, bool>> orderExpression = null, bool isOrderDesc = false);
 
-        Task<PaginationResult<T>> GetWherePagination(Expression<Func<T, bool>> expression,int pageNumber=1,int pageSize=5);
+        Task<PaginationResult<T>> GetWherePagination(Expression<Func<T, bool>> expression, int pageNumber = 1, int pageSize = 5, Expression<Func<T, bool>> orderExpression = null, bool isOrderDesc = false);
 
         IQueryable<T> GetAll(bool isTracking = true);
 

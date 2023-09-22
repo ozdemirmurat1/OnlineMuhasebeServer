@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using OnlineMuhasebeServer.Domain.Abstractions;
 using OnlineMuhasebeServer.Domain.Repositories.GenericRepositories.CompanyDbContext;
-using OnlineMuhasebeServer.Persistence.Context;
 using System.Linq.Expressions;
 
 namespace OnlineMuhasebeServer.Persistence.Repositories.GenericRepositories.CompanyDbContext
@@ -70,13 +69,29 @@ namespace OnlineMuhasebeServer.Persistence.Repositories.GenericRepositories.Comp
             return result;
         }
 
-        public async Task<PaginationResult<T>> GetAllPagination(int pageNumber = 1, int pageSize = 5)
+        public async Task<PaginationResult<T>> GetAllPagination(int pageNumber = 1, int pageSize = 5,Expression<Func<T, bool>> orderExpression = null,bool isOrderDesc=false)
         {
+            if (orderExpression != null)
+            {
+                if(isOrderDesc)
+                    return await Entity.OrderByDescending(orderExpression).ToPagedListAsync(pageNumber, pageSize);
+                else
+                    return await Entity.OrderBy(orderExpression).ToPagedListAsync(pageNumber, pageSize);
+            }
+
             return await Entity.ToPagedListAsync(pageNumber, pageSize);
         }
 
-        public async Task<PaginationResult<T>> GetWherePagination(Expression<Func<T, bool>> expression, int pageNumber = 1, int pageSize = 5)
+        public async Task<PaginationResult<T>> GetWherePagination(Expression<Func<T, bool>> expression, int pageNumber = 1, int pageSize = 5,Expression<Func<T,bool>> orderExpression=null,bool isOrderDesc=false)
         {
+            if (orderExpression != null)
+            {
+                if (isOrderDesc)
+                    return await Entity.Where(expression).OrderByDescending(orderExpression).ToPagedListAsync(pageNumber, pageSize);
+                else
+                    return await Entity.Where(expression).OrderBy(orderExpression).ToPagedListAsync(pageNumber, pageSize);
+            }
+
             return await Entity.Where(expression).ToPagedListAsync(pageNumber,pageSize);
         }
     }
