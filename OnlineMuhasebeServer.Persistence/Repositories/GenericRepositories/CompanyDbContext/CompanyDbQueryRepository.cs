@@ -70,14 +70,14 @@ namespace OnlineMuhasebeServer.Persistence.Repositories.GenericRepositories.Comp
             return result;
         }
 
-        public Task<PaginationResult<T>> GetAllPagination(int pageNumber = 1, int pageSize = 5)
+        public async Task<PaginationResult<T>> GetAllPagination(int pageNumber = 1, int pageSize = 5)
         {
-            throw new NotImplementedException();
+            return await Entity.ToPagedListAsync(pageNumber, pageSize);
         }
 
-        public Task<PaginationResult<T>> GetWherePagination(Expression<Func<T, bool>> expression, int pageNumber = 1, int pageSize = 5)
+        public async Task<PaginationResult<T>> GetWherePagination(Expression<Func<T, bool>> expression, int pageNumber = 1, int pageSize = 5)
         {
-            throw new NotImplementedException();
+            return await Entity.Where(expression).ToPagedListAsync(pageNumber,pageSize);
         }
     }
 }
