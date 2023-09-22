@@ -2232,14 +2232,18 @@ namespace OnlineMuhasebeServer.Persistence.Services.CompanyServices
             return await _queryRepository.GetAll().OrderBy(p=>p.Code).ToListAsync();
         }
 
-        public async Task RemoveByIdUcafAsync(string id,string companyId)
+        public async Task<UniformChartOfAccount> RemoveByIdUcafAsync(string id,string companyId)
         {
             _context = (CompanyDbContext)_contextService.CreateDbContextInstance(companyId);
             _commandRepository.SetDbContextInstance(_context);
             _unitOfWork.SetDbContextInstance(_context);
 
+            UniformChartOfAccount ucaf=await _queryRepository.GetById(id);
+
             await _commandRepository.RemoveById(id);
             await _unitOfWork.SaveChangesAsync();
+
+            return ucaf;
         }
 
         public async Task<bool> CheckRemoveByIdUcafIsGroupAndAvailable(string id, string companyId)
