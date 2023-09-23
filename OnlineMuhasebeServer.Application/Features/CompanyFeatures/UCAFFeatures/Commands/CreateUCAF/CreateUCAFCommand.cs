@@ -1,10 +1,4 @@
-﻿using MediatR;
-using OnlineMuhasebeServer.Application.Messaging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using OnlineMuhasebeServer.Application.Messaging;
 
 namespace OnlineMuhasebeServer.Application.Features.CompanyFeatures.UCAFFeatures.Commands.CreateUCAF
 {

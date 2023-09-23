@@ -1,8 +1,8 @@
 ﻿using Moq;
 using OnlineMuhasebeServer.Application.Features.CompanyFeatures.UCAFFeatures.Commands.UpdateUCAF;
+using OnlineMuhasebeServer.Application.Services;
 using OnlineMuhasebeServer.Application.Services.CompanyService;
 using OnlineMuhasebeServer.Domain.CompanyEntities;
-using OnlineMuhasebeServer.Persistence.Services.CompanyServices;
 using Shouldly;
 
 namespace OnlineMuhasebeServer.UnitTest.Features.CompanyFeatures.UCAFFeatures
@@ -10,10 +10,14 @@ namespace OnlineMuhasebeServer.UnitTest.Features.CompanyFeatures.UCAFFeatures
     public sealed class UpdateUCAFCommandUnitTest
     {
         private readonly Mock<IUCAFService> _service;
+        private readonly Mock<IApiService> _apiService;
+        private readonly Mock<ILogService> _logService;
 
         public UpdateUCAFCommandUnitTest()
         {
             _service = new();
+            _apiService = new();
+            _logService = new();
         }
 
         [Fact]
@@ -47,7 +51,7 @@ namespace OnlineMuhasebeServer.UnitTest.Features.CompanyFeatures.UCAFFeatures
 
             await UniformChartOfAccountShouldNotBeNull();
 
-            UpdateUCAFCommandHandler handler = new UpdateUCAFCommandHandler(_service.Object);
+            UpdateUCAFCommandHandler handler = new UpdateUCAFCommandHandler(_service.Object, _logService.Object, _apiService.Object);
             UpdateUCAFCommandResponse response = await handler.Handle(command, default);
 
             response.ShouldNotBeNull();

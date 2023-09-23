@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using OnlineMuhasebeServer.Application.Messaging;
+using OnlineMuhasebeServer.Application.Services;
 using OnlineMuhasebeServer.Application.Services.CompanyService;
 using OnlineMuhasebeServer.Domain.CompanyEntities;
 
@@ -9,11 +10,13 @@ namespace OnlineMuhasebeServer.Application.Features.CompanyFeatures.UCAFFeatures
     {
         private readonly IUCAFService _ucafService;
         private readonly ILogService _logService;
+        private readonly IApiService _apiService;
 
-        public CreateUCAFCommandHandler(IUCAFService ucafService, ILogService logService)
+        public CreateUCAFCommandHandler(IUCAFService ucafService, ILogService logService, IApiService apiService)
         {
             _ucafService = ucafService;
             _logService = logService;
+            _apiService = apiService;
         }
 
         public async Task<CreateUCAFCommandResponse> Handle(CreateUCAFCommand request, CancellationToken cancellationToken)
@@ -26,12 +29,14 @@ namespace OnlineMuhasebeServer.Application.Features.CompanyFeatures.UCAFFeatures
 
             await _ucafService.CreateUcafAsync(request,cancellationToken);
 
+            string userId = _apiService.GetUserIdByToken();
+
             Log log = new()
             {
                 Id = Guid.NewGuid().ToString(),
                 TableName = nameof(UniformChartOfAccount),
                 Progress = "Create",
-                UserId = "",
+                UserId = userId,
                 Data = JsonConvert.SerializeObject(ucaf)
             };
 

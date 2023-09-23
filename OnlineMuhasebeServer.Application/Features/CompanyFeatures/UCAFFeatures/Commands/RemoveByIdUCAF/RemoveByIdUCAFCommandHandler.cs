@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using OnlineMuhasebeServer.Application.Messaging;
+using OnlineMuhasebeServer.Application.Services;
 using OnlineMuhasebeServer.Application.Services.CompanyService;
 using OnlineMuhasebeServer.Domain.CompanyEntities;
 
@@ -9,11 +10,13 @@ namespace OnlineMuhasebeServer.Application.Features.CompanyFeatures.UCAFFeatures
     {
         private readonly IUCAFService _service;
         private readonly ILogService _logService;
+        private readonly IApiService _apiService;
 
-        public RemoveByIdUCAFCommandHandler(IUCAFService service, ILogService logService)
+        public RemoveByIdUCAFCommandHandler(IUCAFService service, ILogService logService, IApiService apiService)
         {
             _service = service;
             _logService = logService;
+            _apiService = apiService;
         }
 
         public async Task<RemoveByIdUCAFCommandResponse> Handle(RemoveByIdUCAFCommand request, CancellationToken cancellationToken)
@@ -24,13 +27,15 @@ namespace OnlineMuhasebeServer.Application.Features.CompanyFeatures.UCAFFeatures
 
             UniformChartOfAccount ucaf= await _service.RemoveByIdUcafAsync(request.Id, request.CompanyId);
 
+            string userId = _apiService.GetUserIdByToken();
+
             Log log = new()
             {
                 Id=Guid.NewGuid().ToString(),
                 TableName=nameof(UniformChartOfAccount),
                 Progress="Delete",
                 Data=JsonConvert.SerializeObject(ucaf),
-                UserId=""
+                UserId=userId
             };
 
             await _logService.AddAsync(log,request.CompanyId);
