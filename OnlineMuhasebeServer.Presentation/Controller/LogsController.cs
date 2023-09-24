@@ -14,7 +14,8 @@ namespace OnlineMuhasebeServer.Presentation.Controller
         [HttpPost("[action]")]
         public async Task<IActionResult> GetLogsByTableName(GetLogsByTableNameQuery request)
         {
-
+            GetLogsByTableNameQueryResponse response = await _mediator.Send(request);
+            return Ok(response);
         }
     }
 }

@@ -51,20 +51,23 @@ namespace OnlineMuhasebeServer.Persistence.Services.CompanyServices
 
             IList<LogDto> logDtos=new List<LogDto>();
 
-            foreach (var item in result.Datas)
+            if (result.Datas != null)
             {
-                AppUser user=await _userManager.FindByIdAsync(item.UserId);
-                LogDto logDto = new()
+                foreach (var item in result.Datas)
                 {
-                    Id = item.Id,
-                    CreatedDate=item.CreatedDate,
-                    Data = item.Data,
-                    TableName = item.TableName,
-                    UserId = item.UserId,
-                    UserEmail = user.Email,
-                    UserName=$"{user.FirstName} {user.LastName}",
-                };
-                logDtos.Add(logDto);
+                    AppUser user = await _userManager.FindByIdAsync(item.UserId);
+                    LogDto logDto = new()
+                    {
+                        Id = item.Id,
+                        CreatedDate = item.CreatedDate,
+                        Data = item.Data,
+                        TableName = item.TableName,
+                        UserId = item.UserId,
+                        UserEmail = user.Email,
+                        UserName = $"{user.FirstName} {user.LastName}",
+                    };
+                    logDtos.Add(logDto);
+                }
             }
 
             PaginationResult<LogDto> requestResult = new(
