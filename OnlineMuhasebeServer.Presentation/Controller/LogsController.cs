@@ -1,5 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using OnlineMuhasebeServer.Application.Features.CompanyFeatures.LogFeatures.Queries.GetLogsByTableName;
 using OnlineMuhasebeServer.Presentation.Abstraction;
 
 namespace OnlineMuhasebeServer.Presentation.Controller
@@ -8,5 +10,11 @@ namespace OnlineMuhasebeServer.Presentation.Controller
     public class LogsController : ApiController
     {
         public LogsController(IMediator mediator) : base(mediator) { }
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> GetLogsByTableName(GetLogsByTableNameQuery request)
+        {
+
+        }
     }
 }
