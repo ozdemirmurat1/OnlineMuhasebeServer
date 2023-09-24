@@ -5,7 +5,7 @@ namespace OnlineMuhasebeServer.Application.Services.CompanyService
 {
     public interface IUCAFService
     {
-        Task CreateUcafAsync(CreateUCAFCommand request,CancellationToken cancellationToken);
+        Task<UniformChartOfAccount> CreateUcafAsync(CreateUCAFCommand request,CancellationToken cancellationToken);
 
         Task<UniformChartOfAccount> GetByCodeAsync(string companyId,string code, CancellationToken cancellationToken);
 

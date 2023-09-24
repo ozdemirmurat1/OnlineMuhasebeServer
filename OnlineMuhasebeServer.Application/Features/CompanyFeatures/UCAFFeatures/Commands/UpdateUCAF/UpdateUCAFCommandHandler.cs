@@ -40,6 +40,7 @@ namespace OnlineMuhasebeServer.Application.Features.CompanyFeatures.UCAFFeatures
             {
                 Id=Guid.NewGuid().ToString(),
                 Progress="UpdateOld",
+                TableName=nameof(UniformChartOfAccount),
                 Data=JsonConvert.SerializeObject(ucaf),
                 UserId=userId
             };
@@ -54,6 +55,7 @@ namespace OnlineMuhasebeServer.Application.Features.CompanyFeatures.UCAFFeatures
             {
                 Id = Guid.NewGuid().ToString(),
                 Progress = "UpdateNew",
+                TableName = nameof(UniformChartOfAccount),
                 Data = JsonConvert.SerializeObject(ucaf),
                 UserId = userId
             };

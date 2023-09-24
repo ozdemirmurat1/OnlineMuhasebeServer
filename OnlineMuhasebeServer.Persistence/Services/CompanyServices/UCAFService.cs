@@ -28,7 +28,7 @@ namespace OnlineMuhasebeServer.Persistence.Services.CompanyServices
             _queryRepository = queryRepository;
         }
 
-        public async Task CreateUcafAsync(CreateUCAFCommand request, CancellationToken cancellationToken)
+        public async Task<UniformChartOfAccount> CreateUcafAsync(CreateUCAFCommand request, CancellationToken cancellationToken)
         {
             _context = (CompanyDbContext)_contextService.CreateDbContextInstance(request.CompanyId);
 
@@ -44,6 +44,8 @@ namespace OnlineMuhasebeServer.Persistence.Services.CompanyServices
             await _commandRepository.AddAsync(uniformChartOfAccount, cancellationToken);
 
             await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+            return uniformChartOfAccount;
         }
 
         public async Task<UniformChartOfAccount> GetByCodeAsync(string companyId, string code,CancellationToken cancellationToken)

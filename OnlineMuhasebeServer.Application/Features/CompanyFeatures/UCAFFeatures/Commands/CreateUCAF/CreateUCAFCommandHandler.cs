@@ -27,7 +27,7 @@ namespace OnlineMuhasebeServer.Application.Features.CompanyFeatures.UCAFFeatures
 
             if (ucaf != null) throw new Exception("Bu hesap planı kodu daha önce oluşturulmuş");
 
-            await _ucafService.CreateUcafAsync(request,cancellationToken);
+            UniformChartOfAccount createUcaf= await _ucafService.CreateUcafAsync(request,cancellationToken);
 
             string userId = _apiService.GetUserIdByToken();
 
@@ -37,7 +37,7 @@ namespace OnlineMuhasebeServer.Application.Features.CompanyFeatures.UCAFFeatures
                 TableName = nameof(UniformChartOfAccount),
                 Progress = "Create",
                 UserId = userId,
-                Data = JsonConvert.SerializeObject(ucaf)
+                Data = JsonConvert.SerializeObject(createUcaf)
             };
 
             await _logService.AddAsync(log, request.CompanyId);
