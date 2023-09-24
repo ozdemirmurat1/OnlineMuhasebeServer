@@ -45,7 +45,7 @@ namespace OnlineMuhasebeServer.Persistence.Services.CompanyServices
             _context=(CompanyDbContext)_contextService.CreateDbContextInstance(request.CompanyId);
             _logQueryRepository.SetDbContextInstance(_context);
 
-            PaginationResult<Log> result=await _logQueryRepository.GetAll(false).ToPagedListAsync(request.PageNumber, request.PageSize);
+            PaginationResult<Log> result=await _logQueryRepository.GetAll(false).OrderByDescending(p=>p.CreatedDate).ToPagedListAsync(request.PageNumber, request.PageSize);
 
             int count = _logQueryRepository.GetAll().Count();
 
