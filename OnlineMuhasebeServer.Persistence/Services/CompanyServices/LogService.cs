@@ -62,6 +62,7 @@ namespace OnlineMuhasebeServer.Persistence.Services.CompanyServices
                         CreatedDate = item.CreatedDate,
                         Data = item.Data,
                         TableName = item.TableName,
+                        Progress = item.Progress,
                         UserId = item.UserId,
                         UserEmail = user.Email,
                         UserName = $"{user.FirstName} {user.LastName}",
