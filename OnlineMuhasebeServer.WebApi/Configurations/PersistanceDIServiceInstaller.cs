@@ -6,6 +6,7 @@ using OnlineMuhasebeServer.Domain.Repositories.AppDbContext.MainRoleAndRoleRelat
 using OnlineMuhasebeServer.Domain.Repositories.AppDbContext.MainRoleAndUserRelationshipRepositories;
 using OnlineMuhasebeServer.Domain.Repositories.AppDbContext.MainRoleRepositories;
 using OnlineMuhasebeServer.Domain.Repositories.AppDbContext.UserAndCompanyRelationshipRepositories;
+using OnlineMuhasebeServer.Domain.Repositories.CompanyDbContext.BookEntryRepositories;
 using OnlineMuhasebeServer.Domain.Repositories.CompanyDbContext.LogRepositories;
 using OnlineMuhasebeServer.Domain.Repositories.CompanyDbContext.ReportRepositories;
 using OnlineMuhasebeServer.Domain.Repositories.CompanyDbContext.UCAFRepositories;
@@ -16,6 +17,7 @@ using OnlineMuhasebeServer.Persistence.Repositories.AppDbContext.MainRoleAndRole
 using OnlineMuhasebeServer.Persistence.Repositories.AppDbContext.MainRoleAndUserRLRepositories;
 using OnlineMuhasebeServer.Persistence.Repositories.AppDbContext.MainRoleRepositories;
 using OnlineMuhasebeServer.Persistence.Repositories.AppDbContext.UserAndCompanyRLRepositories;
+using OnlineMuhasebeServer.Persistence.Repositories.CompanyDbContext.BookEntryRepositories;
 using OnlineMuhasebeServer.Persistence.Repositories.CompanyDbContext.LogRepositories;
 using OnlineMuhasebeServer.Persistence.Repositories.CompanyDbContext.ReportRepositories;
 using OnlineMuhasebeServer.Persistence.Repositories.CompanyDbContext.UCAFRepositories;
@@ -43,6 +45,7 @@ namespace OnlineMuhasebeServer.WebApi.Configurations
             services.AddScoped<IUCAFService, UCAFService>();
             services.AddScoped<IReportService, ReportService>();
             services.AddScoped<ILogService, LogService>();
+            services.AddScoped<IBookEntryService, BookEntryService>();
             #endregion
 
             #region AppDbContext
@@ -70,6 +73,9 @@ namespace OnlineMuhasebeServer.WebApi.Configurations
 
             services.AddScoped<ILogCommandRepository,LogCommandRepository>();
             services.AddScoped<ILogQueryRepository, LogQueryRepository>();
+
+            services.AddScoped<IBookEntryCommandRepository,BookEntryCommandRepository>();
+            services.AddScoped<IBookEntryQueryRepository,BookEntryQueryRepository>();
             #endregion
 
             #region AppDbContext
