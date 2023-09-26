@@ -1,4 +1,5 @@
-﻿using OnlineMuhasebeServer.Domain.CompanyEntities;
+﻿using EntityFrameworkCorePagination.Nuget.Pagination;
+using OnlineMuhasebeServer.Domain.CompanyEntities;
 
 namespace OnlineMuhasebeServer.Application.Services.CompanyService
 {
@@ -7,5 +8,9 @@ namespace OnlineMuhasebeServer.Application.Services.CompanyService
         Task<string> GetNewBookEntryNumber(string companyId);
 
         Task AddAsync(string companyId,BookEntry bookEntry,CancellationToken cancellationToken);
+
+        Task<PaginationResult<BookEntry>> GetAllAsync(string companyId,int pageNumber,int pageSize);
+
+        int GetCount(string companyId);
     }
 }

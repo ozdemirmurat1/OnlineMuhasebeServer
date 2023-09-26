@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EntityFrameworkCorePagination.Nuget.Pagination;
+using Microsoft.EntityFrameworkCore;
 using OnlineMuhasebeServer.Application.Services.CompanyService;
 using OnlineMuhasebeServer.Domain;
 using OnlineMuhasebeServer.Domain.CompanyEntities;
@@ -54,6 +55,22 @@ namespace OnlineMuhasebeServer.Persistence.Services.CompanyServices
             }
 
             return newBookEntryNumber;
+        }
+
+        public async Task<PaginationResult<BookEntry>> GetAllAsync(string companyId, int pageNumber, int pageSize)
+        {
+            _context = (CompanyDbContext)_contextService.CreateDbContextInstance(companyId);
+            _queryRepository.SetDbContextInstance(_context);
+
+            return await _queryRepository.GetAll(false).OrderByDescending(p=>p.Date).ToPagedListAsync(pageNumber, pageSize);
+        }
+
+        public int GetCount(string companyId)
+        {
+            _context = (CompanyDbContext)_contextService.CreateDbContextInstance(companyId);
+            _queryRepository.SetDbContextInstance(_context);
+
+            return _queryRepository.GetAll().Count();
         }
     }
 }
