@@ -1,12 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OnlineMuhasebeServer.Domain.Abstractions;
 using OnlineMuhasebeServer.Domain.Repositories.GenericRepositories.CompanyDbContext;
-using OnlineMuhasebeServer.Persistence.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineMuhasebeServer.Persistence.Repositories.GenericRepositories.CompanyDbContext
 {
