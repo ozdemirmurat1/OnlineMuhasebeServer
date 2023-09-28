@@ -21,5 +21,12 @@ namespace OnlineMuhasebeServer.Infrastructure.Services
 
             return userId ?? string.Empty;
         }
+
+        public int GetYearByToken()
+        {
+            var year = _httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(p => p.Type.Contains(""))?.Value;
+
+            return year is null ? Convert.ToInt16(year) : DateTime.Now.Year;
+        }
     }
 }
