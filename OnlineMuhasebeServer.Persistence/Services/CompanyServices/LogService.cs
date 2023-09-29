@@ -64,8 +64,8 @@ namespace OnlineMuhasebeServer.Persistence.Services.CompanyServices
                         TableName = item.TableName,
                         Progress = item.Progress,
                         UserId = item.UserId,
-                        UserEmail = user.Email,
-                        UserName = $"{user.FirstName} {user.LastName}",
+                        UserEmail = user?.Email,
+                        UserName = $"{user?.FirstName} {user?.LastName}",
                     };
                     logDtos.Add(logDto);
                 }
