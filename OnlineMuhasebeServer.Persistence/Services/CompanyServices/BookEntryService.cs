@@ -29,6 +29,7 @@ namespace OnlineMuhasebeServer.Persistence.Services.CompanyServices
         {
             _context = (CompanyDbContext)_contextService.CreateDbContextInstance(companyId);
             _commandRepository.SetDbContextInstance(_context);
+            _unitOfWork.SetDbContextInstance(_context);
 
             await _commandRepository.AddAsync(bookEntry, cancellationToken);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
