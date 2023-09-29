@@ -66,7 +66,7 @@ namespace OnlineMuhasebeServer.Persistence.Services.CompanyServices
             string startingDateString = "01.01." + year;
             string endDateString = "31.12." + year;
 
-            return await _queryRepository.GetWhere(p=>p.Date>=Convert.ToDateTime(startingDateString) && p.Date<=Convert.ToDateTime(endDateString)).OrderByDescending(p=>p.Date).ToPagedListAsync(pageNumber, pageSize);
+            return await _queryRepository.GetWhere(p=>p.CreatedDate>=Convert.ToDateTime(startingDateString) && p.Date<=Convert.ToDateTime(endDateString)).OrderByDescending(p=>p.Date).ToPagedListAsync(pageNumber, pageSize);
         }
 
         public int GetCount(string companyId)

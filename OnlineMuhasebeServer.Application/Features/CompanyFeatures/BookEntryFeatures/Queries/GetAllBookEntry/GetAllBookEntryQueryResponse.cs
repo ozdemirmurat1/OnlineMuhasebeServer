@@ -6,6 +6,6 @@
         DateTime Date,
         string Description,
         string Type,
-        decimal Debt,
+        decimal Debit,
         decimal Credit);
 }
